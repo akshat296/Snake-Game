@@ -1,10 +1,10 @@
 {
-  "name": "snake-front-end",
-  "description": "",
-  "main": "",
+  "name": "public",
   "authors": [
     "Akshat <tandon.akshat@thinksys.com>"
   ],
+  "description": "",
+  "main": "",
   "license": "MIT",
   "homepage": "",
   "ignore": [
@@ -13,8 +13,5 @@
     "bower_components",
     "test",
     "tests"
-  ],
-  "dependencies": {
-    "bootstrap": "^3.3.7"
-  }
+  ]
 }
