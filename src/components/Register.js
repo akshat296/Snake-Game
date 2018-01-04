@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
 import { connect } from 'react-redux';
 import { createCourses, deleteCourses, doneCourses, editCourses } from './actions/courseActions';
 import { bindActionCreators } from 'redux';
 
-class App extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     this.state = {
     username:"",
-    password:""  
+    password:"",
+    confirm_password:"",
+    email:""  
     };
      this.username = this.username.bind(this);
      this.password = this.password.bind(this);
@@ -20,7 +22,12 @@ username(event){
 password(event){
   this.setState({password:event.target.value});
 }
-
+confirm_password(event){
+    this.setState({confirm_password:event.target.value});
+  }
+email(event){
+    this.setState({email:event.target.value});
+  }
   render() {
     return (
       <div className="App">
@@ -30,23 +37,35 @@ password(event){
             <input className = "center-text textfield"       
                    type = "text"
                    name = "email"
-                   placeholder = "Username or Email"
+                   placeholder = "Username"
                    value = {this.state.username} 
                    onChange= {this.username}/>
             <br/>
             <input className = "center-text textfield"      
-                   type = "text"
+                   type = "password"
                    name = "password" 
                    placeholder = "Password"
+                   value = {this.state.password} 
+                   onChange={this.password} />
+            <input className = "center-text textfield"      
+                   type = "password"
+                   name = "confirm_password" 
+                   placeholder = "Confirm Password"
+                   value = {this.state.password} 
+                   onChange={this.password} />
+            <input className = "center-text textfield"      
+                   type = "text"
+                   name = "email" 
+                   placeholder = "Email"
                    value = {this.state.password} 
                    onChange={this.password} />
             <br/><br/>
             <input className = "center-text submit btn btn-primary" 
                    type = "submit" 
-                   value = "Login"/><br/>
-            <a href = "./components/Register.js">Not registered yet! Sign Up!</a>
+                   value = "Sign up"/><br/>
+          
         </div>
-      </div>
+       </div>
       </div>
 
     );
