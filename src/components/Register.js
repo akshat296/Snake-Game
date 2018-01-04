@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { connect } from 'react-redux';
-import { createCourses, deleteCourses, doneCourses, editCourses } from './actions/courseActions';
+//import { createCourses, deleteCourses, doneCourses, editCourses } from './actions/courseActions';
 import { bindActionCreators } from 'redux';
 
 class Register extends Component {
@@ -33,7 +33,7 @@ email(event){
       <div className="App">
         <div className="row">
           <div className="col-lg-3" id = "parent">
-            <h2>Login</h2><br/>
+            <h2>Register</h2><br/>
             <input className = "center-text textfield"       
                    type = "text"
                    name = "email"
@@ -75,17 +75,17 @@ email(event){
 function mapStateToProps(state, ownProps) {
 
   return {
-    courses: state.courses,
-    statusToast: state.statusToast
+    //courses: state.courses,
+   // statusToast: state.statusToast
 
   };
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    createCourses: createCourses
+  //  createCourses: createCourses
    
   }, dispatch);
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

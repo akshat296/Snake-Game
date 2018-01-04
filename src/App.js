@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import Main from './Main';
+import Navigation from './Navigation';
 import { connect } from 'react-redux';
 import { createCourses, deleteCourses, doneCourses, editCourses } from './actions/courseActions';
 import { bindActionCreators } from 'redux';
@@ -24,6 +26,8 @@ password(event){
   render() {
     return (
       <div className="App">
+        <Navigation />
+        <Main />
         <div className="row">
           <div className="col-lg-3" id = "parent">
             <h2>Login</h2><br/>
