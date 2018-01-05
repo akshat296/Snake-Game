@@ -51,13 +51,13 @@ email(event){
                    type = "password"
                    name = "confirm_password" 
                    placeholder = "Confirm Password"
-                   value = {this.state.password} 
+                   value = {this.state.confirm_password} 
                    onChange={this.password} />
             <input className = "center-text textfield"      
                    type = "text"
                    name = "email" 
                    placeholder = "Email"
-                   value = {this.state.password} 
+                   value = {this.state.email} 
                    onChange={this.password} />
             <br/><br/>
             <input className = "center-text submit btn btn-primary" 

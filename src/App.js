@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Main from './Main';
-import Navigation from './Navigation';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+import Register from './components/Register';
+import SignIn from './components/SignIn';
 import { connect } from 'react-redux';
 import { createCourses, deleteCourses, doneCourses, editCourses } from './actions/courseActions';
 import { bindActionCreators } from 'redux';
@@ -25,37 +30,25 @@ password(event){
 
   render() {
     return (
-      <div className="App">
-        <Navigation />
-        <Main />
-        <div className="row">
-          <div className="col-lg-3" id = "parent">
-            <h2>Login</h2><br/>
-            <input className = "center-text textfield"       
-                   type = "text"
-                   name = "email"
-                   placeholder = "Username or Email"
-                   value = {this.state.username} 
-                   onChange= {this.username}/>
-            <br/>
-            <input className = "center-text textfield"      
-                   type = "text"
-                   name = "password" 
-                   placeholder = "Password"
-                   value = {this.state.password} 
-                   onChange={this.password} />
-            <br/><br/>
-            <input className = "center-text submit btn btn-primary" 
-                   type = "submit" 
-                   value = "Login"/><br/>
-            <a href = "./components/Register.js">Not registered yet! Sign Up!</a>
-        </div>
-      </div>
-      </div>
-
+      <Router>
+      <div>
+      <nav >
+        <ul style = {{display:'inline'}}  >
+          <li><Link to="/">Home</Link></li>
+          <li><Link to='/register'>Register</Link></li>
+          <li><Link to='/signin'>Sign In</Link></li>
+        </ul>
+      </nav>
+      <hr/>
+      <Route exact path="/" component={SignIn}/>
+      <Route path="/register" component={Register}/>
+      <Route path="/signin" component={SignIn}/>
+     </div>
+    </Router> 
     );
   }
 }
+
 
 function mapStateToProps(state, ownProps) {
 
@@ -68,7 +61,6 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
     createCourses: createCourses
-   
   }, dispatch);
 
 }

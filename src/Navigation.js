@@ -1,18 +1,27 @@
+import React from 'react';
 import {
-    Link,
-  } from 'react-router-dom';
-import React  from 'react';
-
-  
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+import App from './App';
+import Register from './components/Register'
 const Navigation = () => (
-    <header>
+    <Router>
+      <div>
       <nav >
         <ul style = {{display:'inline'}}  >
+          <li><Link to="/">Home</Link></li>
           <li><Link to='/register'>Register</Link></li>
           <li><Link to='/signin'>Sign In</Link></li>
         </ul>
       </nav>
-    </header>
+      <hr/>
+      <Route exact path="/" component={Register}/>
+      <Route path="/register" component={Register}/>
+      <Route path="/signin" component={App}/>
+    </div>
+    </Router>
   )
 
   export default Navigation;
