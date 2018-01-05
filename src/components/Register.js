@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { connect } from 'react-redux';
+import Navigation from './Navigation';
 //import { createCourses, deleteCourses, doneCourses, editCourses } from './actions/courseActions';
 import { bindActionCreators } from 'redux';
 
@@ -32,7 +33,8 @@ email(event){
     return (
       <div className="App">
         <div className="row">
-          <div className="col-lg-3" id = "parent">
+          <div className="col-lg-3" id="parent">
+          <Navigation/>
             <h2>Register</h2><br/>
             <input className = "center-text textfield"       
                    type = "text"
