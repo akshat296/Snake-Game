@@ -65,7 +65,6 @@ email(event){
             <input className = "center-text submit btn btn-primary" 
                    type = "submit" 
                    value = "Sign up"/><br/>
-          
         </div>
        </div>
       </div>
@@ -84,7 +83,7 @@ function mapStateToProps(state, ownProps) {
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-  //  createCourses: createCourses
+  //  getUsername: getUsername
    
   }, dispatch);
 

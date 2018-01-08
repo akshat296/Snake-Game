@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Navigation from './Navigation';
 import { bindActionCreators } from 'redux';
+import { getUsername } from '../actions/loginActions';
 
 class SignIn extends Component {
   constructor(props) {
@@ -12,7 +13,9 @@ class SignIn extends Component {
     username:"",
     password:""  
     };
+    console.log(props);
      this.username = this.username.bind(this);
+     this.checkUser = this.checkUser.bind(this);
      this.password = this.password.bind(this);
   }
 username(event){
@@ -21,6 +24,10 @@ username(event){
 password(event){
   this.setState({password:event.target.value});
 }
+checkUser(){
+  console.log("props",this.props)
+  this.props.getUsername(this.state.username,this.state.password);
+  }
 
   render() {
     return (
@@ -45,7 +52,7 @@ password(event){
             <br/><br/>
             <input className = "center-text submit btn btn-primary" 
                    type = "submit" 
-                   value = "Login"/><br/>
+                   value = "Login" onClick ={this.checkUser}/><br/>
           <Link to='/register'>Not registered yet! Sign Up!</Link>
         </div>
       </div>
@@ -53,5 +60,21 @@ password(event){
     );
   }
 }
+function mapStateToProps(state, ownProps) {
+  
+    return {
+      login:state.login
 
-export default SignIn;
+  
+    };
+  }
+  function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+      getUsername: getUsername
+     
+    }, dispatch);
+  
+  }
+  
+  export default connect(mapStateToProps,mapDispatchToProps)(SignIn);
+  

@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
-import courses from './courseReducers';
+//import courses from './courseReducers';
+import login from './loginReducers';
 //import statusToast from './boxReducers';
-const rootReducer = combineReducers({courses});
+const rootReducer = combineReducers({login});
 export default rootReducer;

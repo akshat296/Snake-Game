@@ -7,7 +7,7 @@ import {
 import Register from './components/Register';
 import SignIn from './components/SignIn';
 import { connect } from 'react-redux';
-import { createCourses, deleteCourses, doneCourses, editCourses } from './actions/courseActions';
+//import { createCourses, deleteCourses, doneCourses, editCourses } from './actions/courseActions';
 import { bindActionCreators } from 'redux';
 
 class App extends Component {
@@ -46,12 +46,11 @@ function mapStateToProps(state, ownProps) {
   return {
     courses: state.courses,
     statusToast: state.statusToast
-
   };
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    createCourses: createCourses
+   
   }, dispatch);
 
 }
