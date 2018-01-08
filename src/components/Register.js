@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import '../App.css';
 import { connect } from 'react-redux';
 import Navigation from './Navigation';
-//import { createCourses, deleteCourses, doneCourses, editCourses } from './actions/courseActions';
 import { bindActionCreators } from 'redux';
 
 class Register extends Component {

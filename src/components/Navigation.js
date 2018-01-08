@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { connect } from 'react-redux';
-//import { createCourses, deleteCourses, doneCourses, editCourses } from './actions/courseActions';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 

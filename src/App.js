@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import {
+import { 
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
 import Register from './components/Register';
 import SignIn from './components/SignIn';
 import { connect } from 'react-redux';
-//import { createCourses, deleteCourses, doneCourses, editCourses } from './actions/courseActions';
 import { bindActionCreators } from 'redux';
 
 class App extends Component {
