@@ -64,14 +64,11 @@ function mapStateToProps(state, ownProps) {
   
     return {
       login:state.login
-
-  
     };
   }
   function mapDispatchToProps(dispatch) {
     return bindActionCreators({
       getUsername: getUsername
-     
     }, dispatch);
   
   }
