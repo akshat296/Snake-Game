@@ -21,6 +21,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "redux-logger": "^3.0.6",
     "webpack": "^3.10.0"
   }
 }
