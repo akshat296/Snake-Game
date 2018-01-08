@@ -30,9 +30,9 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={SignIn} />
-          <Route path="/register" component={Register} />
-          <Route path="/signin" component={SignIn} />
+          <Route exact path = "/" component = {SignIn} />
+          <Route path = "/register" component = {Register} />
+          <Route path = "/signin" component = {SignIn} />
         </div>
       </Router>
     );
@@ -43,8 +43,6 @@ class App extends Component {
 function mapStateToProps(state, ownProps) {
 
   return {
-    courses: state.courses,
-    statusToast: state.statusToast
   };
 }
 function mapDispatchToProps(dispatch) {

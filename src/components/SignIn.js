@@ -10,8 +10,8 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    username:"",
-    password:""  
+    username: "",
+    password: ""  
     };
     console.log(props);
      this.username = this.username.bind(this);
@@ -19,10 +19,10 @@ class SignIn extends Component {
      this.password = this.password.bind(this);
   }
 username(event){
-  this.setState({username:event.target.value});
+  this.setState({username: event.target.value});
 }
 password(event){
-  this.setState({password:event.target.value});
+  this.setState({password: event.target.value});
 }
 checkUser(){
   console.log("props",this.props)
@@ -31,9 +31,9 @@ checkUser(){
 
   render() {
     return (
-        <div className="App">
-        <div className="row">
-          <div className="col-lg-3" id="parent">
+        <div className = "App">
+        <div className = "row">
+          <div className = "col-lg-3" id = "parent">
           <Navigation/>
             <h2>Login</h2><br/>
             <input className = "center-text textfield"       
@@ -48,12 +48,12 @@ checkUser(){
                    name = "password" 
                    placeholder = "Password"
                    value = {this.state.password} 
-                   onChange={this.password} />
+                   onChange = {this.password} />
             <br/><br/>
             <input className = "center-text submit btn btn-primary" 
                    type = "submit" 
                    value = "Login" onClick ={this.checkUser}/><br/>
-          <Link to='/register'>Not registered yet! Sign Up!</Link>
+          <Link to = '/register'>Not registered yet! Sign Up!</Link>
         </div>
       </div>
       </div>
@@ -63,7 +63,7 @@ checkUser(){
 function mapStateToProps(state, ownProps) {
   
     return {
-      login:state.login
+      login: state.login
     };
   }
   function mapDispatchToProps(dispatch) {
