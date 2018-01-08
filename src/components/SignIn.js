@@ -13,7 +13,6 @@ class SignIn extends Component {
     username: "",
     password: ""  
     };
-    console.log(props);
      this.username = this.username.bind(this);
      this.checkUser = this.checkUser.bind(this);
      this.password = this.password.bind(this);
@@ -25,7 +24,6 @@ password(event){
   this.setState({password: event.target.value});
 }
 checkUser(){
-  console.log("props",this.props)
   this.props.getUsername(this.state.username,this.state.password);
   }
 
