@@ -19,17 +19,21 @@ class Game extends Component {
 
    this.game=this.game.bind(this);
    this.keyPush=this.keyPush.bind(this);
-   
+   this.handleLoad=this.handleLoad.bind(this);
   }
 componentDidMount(){
-
-   var canv=document.getElementById("gc");
-   var ctx =canv.getContext('2d');
-   document.addEventListener("keydown",this.keyPush);
-   setInterval(()=>{this.game(ctx,canv)},900/15);
+    window.addEventListener('load', this.handleLoad);
+   
 }
 
+handleLoad(){
+    var canv=document.getElementById("gc");
+   var ctx =canv.getContext('2d');
+   document.addEventListener("keydown",this.keyPush);
 
+   setInterval(()=>{this.game(ctx,canv)},1000/15);
+
+}
 
 
 game(ctx,canv){
@@ -52,24 +56,42 @@ game(ctx,canv){
     ctx.fillStyle="black";
     ctx.fillRect(0,0,canv.width,canv.height);
     
-    ctx.fillStyle="lime";
+    //ctx.fillStyle="lime";
     //console.log("somethingdf");
     //console.log("something",this.state.trail);
+    
     for(var i=0;i<this.state.trail.length;i++){
+    //console.log(i);
+    if(i===this.state.trail.length-1){
+        ctx.fillStyle="yellow";  
+    }
+    else{
+        ctx.fillStyle="lime"
+    }
+    console.log("trail: ",this.state.trail.length);
     ctx.fillRect(this.state.trail[i].x*this.state.gs,this.state.trail[i].y*this.state.gs,this.state.gs-2,this.state.gs-2);
     if(this.state.trail[i].x===this.state.px && this.state.trail[i].y===this.state.py ){
         this.setState({tail:5});
 
     }
-}
-var b={x:this.state.px,y:this.state.py}
-
+    
+    }
+    console.log("akshat",this.state.trail.length);
+var b={x:this.state.px,y:this.state.py};
+// this.setState(prevState => ({
+//     trail: [...prevState.trail, b]
+// }))
 this.setState({trail:[...this.state.trail,b]});
+
+//this.setState({trail:c});
 while(this.state.trail.length>this.state.tail){
-    this.setState({trail:this.state.trail.shift()});
+    var abc=this.state.trail;
+    abc.shift();
+    this.setState({trail:abc});
 }
-if(this.state.ax===this.state.px && this.state.ay===this.state.py){
-    this.setState({trail:this.state.tail+1});
+if(this.state.ax===this.state.px && this.state.ay === this.state.py){
+    
+    this.setState({tail:this.state.tail+1});
     this.setState({ax:Math.floor(Math.random()*this.state.tc)});
     this.setState({ay:Math.floor(Math.random()*this.state.tc)});
 
@@ -83,19 +105,19 @@ keyPush(evt){
     switch(evt.keyCode){
         case 37:
         this.setState({xv:-1,yv:0});
-        console.log("37 che -1 ..",this.state);
+        //console.log("37 che -1 ..",this.state);
         break;
         case 38:
         this.setState({xv:0,yv:-1});
-        console.log("38",this.state);
+       // console.log("38",this.state);
         break;
         case 39:
         this.setState({xv:1,yv:0});
-        console.log("39 check",this.state);
+        //console.log("39 check",this.state);
         break;
         case 40:
         this.setState({xv:0,yv:1});
-        console.log("40",this.state);
+        //console.log("40",this.state);
         break;
     }
 }
