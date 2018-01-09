@@ -1,11 +1,12 @@
-export default function loginReducers(state = [], action)
+export default function loginReducers(state ={}, action)
 {
     switch(action.type)
     {
         case 'SUCCESS': 
-        return [...state,Object.assign({},action.payload)];
+        console.log("loginreducer",action.payload);
+        return {login:action.payload};
         case 'ERROR':
-            return [...state, Object.assign({},action.payload)];
+            return {login:action.payload};
         default :
         return state;
     }

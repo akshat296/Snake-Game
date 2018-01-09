@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -79,7 +79,7 @@ game(ctx,canv){
         ctx.font="50px Georgia";
         ctx.fillText("Game Over!",70,80);
        
-        if(this.state.xv!=0 || this.state.yv!=0){
+        if(this.state.xv !== 0 || this.state.yv !== 0){
         clearInterval(this.timer);}
         this.setState({tail:5});
 
@@ -114,23 +114,25 @@ keyPush(evt){
     
     switch(evt.keyCode){
         case 37://left
-        if(this.state.xv!=1){
+        if(this.state.xv !== 1){
         this.setState({xv:-1,yv:0});}
         break;
         case 38://up
-        if(this.state.yv!=1){
+        if(this.state.yv !== 1){
         this.setState({xv:0,yv:-1});}
        //  
         break;
         case 39://right
-        if(this.state.xv!=-1){
+        if(this.state.xv !== -1){
         this.setState({xv:1,yv:0});}
         // 
         break;
         case 40://down
-        if(this.state.yv!=-1){
+        if(this.state.yv !== -1){
         this.setState({xv:0,yv:1});}
         // 
+        break;
+        default:
         break;
     }
 }

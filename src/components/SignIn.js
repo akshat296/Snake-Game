@@ -11,10 +11,11 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    username: "",
-    password: ""  
+    username: "a",
+    password: "a"  ,c:1
     };
      this.username = this.username.bind(this);
+     this.function2 = this.function2.bind(this);
      this.checkUser = this.checkUser.bind(this);
      this.password = this.password.bind(this);
   }
@@ -24,8 +25,12 @@ username(event){
 password(event){
   this.setState({password: event.target.value});
 }
+function2(){
+  console.log("akshatq",this.props.user.login.name);
+}
 checkUser(){
- console.log("akshat",this.props.login.name);
+  setTimeout(this.function2, 3000);
+
   console.log(this.props.getUsername(this.state.username,this.state.password));
   }
 
@@ -64,7 +69,7 @@ checkUser(){
 function mapStateToProps(state, ownProps) {
   
     return {
-      login: state.login
+      user: state.pika
     };
   }
   function mapDispatchToProps(dispatch) {
