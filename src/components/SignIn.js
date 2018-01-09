@@ -25,7 +25,7 @@ password(event){
   this.setState({password: event.target.value});
 }
 checkUser(){
- 
+ console.log("akshat",this.props.login.name);
   console.log(this.props.getUsername(this.state.username,this.state.password));
   }
 

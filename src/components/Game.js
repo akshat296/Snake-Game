@@ -20,23 +20,23 @@ class Game extends Component {
     this.timer=this.timer.bind(this);
    this.game=this.game.bind(this);
    this.keyPush=this.keyPush.bind(this);
-   this.handleLoad=this.handleLoad.bind(this);
+ //  this.handleLoad=this.handleLoad.bind(this);
   }
 componentDidMount(){
-    window.addEventListener('load', this.handleLoad);
-   
+  //  window.addEventListener('load', this.handleLoad);
+   var canv=document.getElementById("gc");
+   var ctx =canv.getContext('2d');
+   document.addEventListener("keydown",this.keyPush);
+
+  this.timer= setInterval(()=>{this.game(ctx,canv)},1000/15);
+
 }
 timer(){
     return null;
 }
 
 handleLoad(){
-    var canv=document.getElementById("gc");
-   var ctx =canv.getContext('2d');
-   document.addEventListener("keydown",this.keyPush);
-
-  this.timer= setInterval(()=>{this.game(ctx,canv)},1000/15);
-
+    
 }
 
 
@@ -61,18 +61,18 @@ game(ctx,canv){
     ctx.fillRect(0,0,canv.width,canv.height);
     
     //ctx.fillStyle="lime";
-    //console.log("somethingdf");
-    //console.log("something",this.state.trail);
+    // 
+    // 
     
     for(var i=0;i<this.state.trail.length;i++){
-    //console.log(i);
+    // 
     if(i===this.state.trail.length-1){
         ctx.fillStyle="yellow";  
     }
     else{
         ctx.fillStyle="lime"
     }
-    console.log("trail: ",this.state.trail.length);
+     
     ctx.fillRect(this.state.trail[i].x*this.state.gs,this.state.trail[i].y*this.state.gs,this.state.gs-2,this.state.gs-2);
     if(this.state.trail[i].x===this.state.px && this.state.trail[i].y===this.state.py ){
         ctx.fillStyle='pink';
@@ -86,7 +86,7 @@ game(ctx,canv){
     }
     
     }
-    
+     
 var b={x:this.state.px,y:this.state.py};
 // this.setState(prevState => ({
 //     trail: [...prevState.trail, b]
@@ -113,20 +113,24 @@ keyPush(evt){
     
     
     switch(evt.keyCode){
-        case 37:
-        this.setState({xv:-1,yv:0});
+        case 37://left
+        if(this.state.xv!=1){
+        this.setState({xv:-1,yv:0});}
         break;
-        case 38:
-        this.setState({xv:0,yv:-1});
-       // console.log("38",this.state);
+        case 38://up
+        if(this.state.yv!=1){
+        this.setState({xv:0,yv:-1});}
+       //  
         break;
-        case 39:
-        this.setState({xv:1,yv:0});
-        //console.log("39 check",this.state);
+        case 39://right
+        if(this.state.xv!=-1){
+        this.setState({xv:1,yv:0});}
+        // 
         break;
-        case 40:
-        this.setState({xv:0,yv:1});
-        //console.log("40",this.state);
+        case 40://down
+        if(this.state.yv!=-1){
+        this.setState({xv:0,yv:1});}
+        // 
         break;
     }
 }
