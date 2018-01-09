@@ -1,9 +1,9 @@
 import reducers from "../reducers";
 import { createStore } from 'redux';
 import thunk from 'redux-thunk';
-
-import { applyMiddleware } from "../../../../.cache/typescript/2.6/node_modules/redux";
+import logger from 'redux-logger'
+import { applyMiddleware } from "redux";
 
 export default function configureStore (initialState){
-    return createStore(reducers, applyMiddleware(thunk));
+    return createStore(reducers, applyMiddleware(thunk,logger));
 }

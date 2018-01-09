@@ -34,7 +34,8 @@ email(event){
         <div className="row">
           <div className="col-lg-3" id="parent">
           <Navigation/>
-            <h2>Register</h2><br/>
+            <h2>Register</h2>
+            <br/>
             <input className = "center-text textfield"       
                    type = "text"
                    name = "email"
@@ -60,7 +61,8 @@ email(event){
                    placeholder = "Email"
                    value = {this.state.email} 
                    onChange={this.password} />
-            <br/><br/>
+            <br/>
+            <br/>
             <input className = "center-text submit btn btn-primary" 
                    type = "submit" 
                    value = "Sign up"/><br/>
