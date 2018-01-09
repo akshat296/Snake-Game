@@ -12,6 +12,10 @@ class Game extends Component {
     this.state = {
         px:10,py:10,gs:20,tc:20,xv:0,yv:0,trail:[],tail:5,ax:15,ay:15
     }; 
+    //postion x and position y 
+    //grid size and tail count
+    //x velocity and y velocity
+    //apple x position and apple y position
 
    this.game=this.game.bind(this);
    this.keyPush=this.keyPush.bind(this);
@@ -22,7 +26,7 @@ componentDidMount(){
    var canv=document.getElementById("gc");
    var ctx =canv.getContext('2d');
    document.addEventListener("keydown",this.keyPush);
-   setInterval(()=>{this.game(ctx,canv)},1000/15);
+   setInterval(()=>{this.game(ctx,canv)},900/15);
 }
 
 
