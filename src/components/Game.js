@@ -17,6 +17,7 @@ class Game extends Component {
     //x velocity and y velocity
     //apple x position and apple y position
 
+    this.timer=this.timer.bind(this);
    this.game=this.game.bind(this);
    this.keyPush=this.keyPush.bind(this);
    this.handleLoad=this.handleLoad.bind(this);
@@ -25,13 +26,16 @@ componentDidMount(){
     window.addEventListener('load', this.handleLoad);
    
 }
+timer(){
+    return null;
+}
 
 handleLoad(){
     var canv=document.getElementById("gc");
    var ctx =canv.getContext('2d');
    document.addEventListener("keydown",this.keyPush);
 
-   setInterval(()=>{this.game(ctx,canv)},1000/15);
+  this.timer= setInterval(()=>{this.game(ctx,canv)},1000/15);
 
 }
 
@@ -71,12 +75,18 @@ game(ctx,canv){
     console.log("trail: ",this.state.trail.length);
     ctx.fillRect(this.state.trail[i].x*this.state.gs,this.state.trail[i].y*this.state.gs,this.state.gs-2,this.state.gs-2);
     if(this.state.trail[i].x===this.state.px && this.state.trail[i].y===this.state.py ){
+        ctx.fillStyle='pink';
+        ctx.font="50px Georgia";
+        ctx.fillText("Game Over!",70,80);
+       
+        if(this.state.xv!=0 || this.state.yv!=0){
+        clearInterval(this.timer);}
         this.setState({tail:5});
 
     }
     
     }
-    console.log("akshat",this.state.trail.length);
+    
 var b={x:this.state.px,y:this.state.py};
 // this.setState(prevState => ({
 //     trail: [...prevState.trail, b]
@@ -91,7 +101,7 @@ while(this.state.trail.length>this.state.tail){
 }
 if(this.state.ax===this.state.px && this.state.ay === this.state.py){
     
-    this.setState({tail:this.state.tail+1});
+    this.setState({tail:this.state.tail+10});
     this.setState({ax:Math.floor(Math.random()*this.state.tc)});
     this.setState({ay:Math.floor(Math.random()*this.state.tc)});
 
@@ -105,7 +115,6 @@ keyPush(evt){
     switch(evt.keyCode){
         case 37:
         this.setState({xv:-1,yv:0});
-        //console.log("37 che -1 ..",this.state);
         break;
         case 38:
         this.setState({xv:0,yv:-1});
