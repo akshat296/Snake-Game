@@ -35,10 +35,6 @@ timer(){
     return null;
 }
 
-handleLoad(){
-    
-}
-
 
 game(ctx,canv){
     //var canv=document.getElementById("gc");

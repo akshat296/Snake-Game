@@ -8,34 +8,57 @@ import Register from './components/Register';
 import SignIn from './components/SignIn';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import io from 'socket.io-client';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: ""
+      messages:[]
     };
-    this.username = this.username.bind(this);
-    this.password = this.password.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+   
   }
-  username(event) {
-    this.setState({ username: event.target.value });
+ 
+  componentDidMount(){
+    this.socket = io('/')
+    this.socket.on('message',message=>{
+      this.setState({
+        messages:[message,...this.state.messages]
+      })
+    })
   }
-  password(event) {
-    this.setState({ password: event.target.value });
+handleSubmit(event){
+  const body= event.target.value;
+  if(event.keyCode === 13 && body)
+  {
+    const message = {
+      body,
+      from:'Me: '
+    }
+    this.setState({messages: [message,...this.state.messages]});
+    this.socket.emit('message',message)
+    event.target.value = '';
   }
-
+}
   render() {
-    return (
-      <Router>
-        <div>
-          <Route exact path = "/" component = {SignIn} />
-          <Route path = "/register" component = {Register} />
-          <Route path = "/signin" component = {SignIn} />
-        </div>
-      </Router>
-    );
+    
+    const messages = this.state.messages.map((message,index) => {
+      return <li key={index}><b>{message.from}</b>{message.body}</li>})
+    // return (
+    //  <Router>
+    //    <div>
+    //      <Route exact path = "/" component = {SignIn} />
+    //      <Route path = "/register" component = {Register} />
+    //      <Route path = "/signin" component = {SignIn} />
+    //    </div>
+    //  </Router>
+    // );
+    return (<div>
+      test
+      <input type="text" placeholder="Enter a value..." onKeyUp={this.handleSubmit}/>
+      {messages}
+    </div>);
   }
 }
 

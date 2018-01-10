@@ -38,7 +38,7 @@ checkUser(){
     return (
         <div className = "App">
         <div className = "row">
-        <center><Game /></center>
+        {/* <center><Game /></center> */}
           <div className = "col-lg-3" id = "parent">
           <Navigation/>
             <h2>Login</h2><br/>
