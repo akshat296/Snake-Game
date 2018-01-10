@@ -3,7 +3,8 @@
 module.exports = {
     entry: __dirname + "/src",
     output: {
-        path:'/'
+        path: __dirname + "/js",
+        filename: "bundle.js"
     },
     devtool:'source-maps',
     module:{
@@ -15,7 +16,12 @@ module.exports = {
                     presets:['es2015','react'],
                     plugins:['transform-class-properties']
                 }
-            }
+            },
+            {
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
+              }
+
         ]
     }
     

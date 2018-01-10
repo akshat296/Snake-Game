@@ -37,7 +37,7 @@ handleSubmit(event){
       from:'Me: '
     }
     this.setState({messages: [message,...this.state.messages]});
-    this.socket.emit('message',message)
+    this.socket.emit('message',body)
     event.target.value = '';
   }
 }
