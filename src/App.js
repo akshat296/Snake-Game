@@ -26,6 +26,7 @@ class App extends Component {
       this.setState({
         messages:[message,...this.state.messages]
       })
+      //3
     })
   }
 handleSubmit(event){
@@ -37,7 +38,7 @@ handleSubmit(event){
       from:'Me: '
     }
     this.setState({messages: [message,...this.state.messages]});
-    this.socket.emit('message',body)
+    this.socket.emit('message',body)//1
     event.target.value = '';
   }
 }

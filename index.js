@@ -19,6 +19,7 @@ io.on('connection', socket => {
             body,
             from:'me'
         })
+        //2
     })
 });
 server.listen(3006);
