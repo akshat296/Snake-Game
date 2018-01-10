@@ -20,6 +20,19 @@ io.on('connection', socket => {
             from:'me'
         })
         //2
+    }),
+    socket.on('game',name =>{
+        socket.broadcast.emit('game', {
+            name
+        })
+        //2
+    }),
+    socket.on('sync',sync =>{
+        socket.broadcast.emit('sync', {
+            sync
+        })
+        //2
     })
+
 });
 server.listen(3006);

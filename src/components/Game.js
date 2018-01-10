@@ -24,7 +24,7 @@ class Game extends Component {
   }
 componentDidMount(){
   //  window.addEventListener('load', this.handleLoad);
-   var canv=document.getElementById("gc");
+   var canv=document.getElementById(this.props.name);
    var ctx =canv.getContext('2d');
    document.addEventListener("keydown",this.keyPush);
 
@@ -138,7 +138,7 @@ keyPush(evt){
 
     return (
         
-            <canvas id="gc" width= "400" height="400"  
+            <canvas id={this.props.name} width= "400" height="400"  
             style={{backgroundColor:"silver"}} >
            
           
