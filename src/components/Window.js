@@ -28,6 +28,7 @@ class Window extends Component {
         })//3
         this.socket.on('game', game => {
             console.log("adding state of game:  ",game)
+            console.log('3');
             this.setState({
                 games: [game, ...this.state.games]
             })
@@ -35,7 +36,7 @@ class Window extends Component {
             
         })
         this.socket.on('sync', sync => {
-            console.log("ad sync msg:  ",sync)
+            console.log("3 sync ",sync)
             this.setState({
                 messages: sync
             })
@@ -64,6 +65,7 @@ class Window extends Component {
             const game = {
                 name
             }
+            console.log('1');
             this.setState({ games: [game, ...this.state.games] });
             this.socket.emit('game', name)//1
             event.target.value = '';
@@ -80,6 +82,7 @@ class Window extends Component {
     
     render() {
 
+        console.log("in render message",this.state)
         const messages = this.state.messages.map((message, index) => {
             return <li key={index}><b>{message.from}</b>{message.body}</li>
         })
@@ -88,7 +91,7 @@ class Window extends Component {
 
         return (<div>
             <center>
-                <button onClick={this.syncGame} >sync</button>
+                {/* <button onClick={this.syncGame} >sync</button> */}
                 <input type="text" placeholder="Enter a value..." onKeyUp={this.handleSubmit} />
                 {messages}
                 <input type="text" placeholder="Enter a name..." onKeyUp={this.handleGame} />
