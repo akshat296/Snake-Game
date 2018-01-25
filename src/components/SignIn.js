@@ -12,8 +12,8 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    username: "a",
-    password: "a"  ,c:1
+    username: "akshat",
+    password: "test"  ,c:1
     };
      this.username = this.username.bind(this);
      this.function2 = this.function2.bind(this);
@@ -43,21 +43,21 @@ checkUser(){
           <div className = "col-lg-3" id = "parent">
           <Navigation/>
             <h2>Login</h2><br/>
-            <input className = "center-text textfield"       
+            <input className = "center-text textfield"
                    type = "text"
                    name = "email"
                    placeholder = "Username or Email"
                    value = {this.state.username} 
                    onChange= {this.username}/>
             <br/>
-            <input className = "center-text textfield"      
+            <input className = "center-text textfield"
                    type = "text"
                    name = "password" 
                    placeholder = "Password"
-                   value = {this.state.password} 
+                   value = {this.state.password}
                    onChange = {this.password} />
             <br/><br/>
-            <input className = "center-text submit btn btn-primary" 
+            <input className = "center-text submit btn btn-primary"
                    type = "submit" 
                    value = "Login" onClick ={this.checkUser}/><br/>
           <Link to = '/register'>Not registered yet! Sign Up!</Link>

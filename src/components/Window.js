@@ -25,28 +25,22 @@ class Window extends Component {
                 messages: [message, ...this.state.messages]
             })
             console.log("state of messages:  ",this.state.messages)
-        })//3
+        })
         this.socket.on('game', game => {
             console.log("adding state of game:  ",game)
             console.log('3');
             this.setState({
                 games: [game, ...this.state.games]
             })
-            //console.log(" state of games:  ",this.state.games)
-            
         })
         this.socket.on('sync', sync => {
             console.log("3 sync ",sync)
             this.setState({
                 messages: sync
             })
-            //console.log(" state of games:  ",this.state.games)
-            
         })
-
-
-
     }
+
     handleSubmit(event) {
         const body = event.target.value;
         if (event.keyCode === 13 && body) {
@@ -59,6 +53,7 @@ class Window extends Component {
             event.target.value = '';
         }
     }
+
     handleGame(event) {
         const name = event.target.value;
         if (event.keyCode === 13 && name) {
@@ -71,20 +66,17 @@ class Window extends Component {
             event.target.value = '';
         }
     }
+
     syncGame(event) {
-        
-       
             const syncMsg = this.state.messages;
             const syncGame = this.state.games;
             this.socket.emit('sync', syncMsg )//1
-            
         }
     
     render() {
-
         console.log("in render message",this.state)
         const messages = this.state.messages.map((message, index) => {
-            return <li key={index}><b>{message.from}</b>{message.body}</li>
+            return <div><li key={index}><b>{message.from}</b>{message.body}</li><br/></div>;
         })
         const games = this.state.games.map((game,index) => {
             return <div key={index}><br/><Game name={game.name}/><br/><b>{game.name}</b></div>})
@@ -99,19 +91,15 @@ class Window extends Component {
             </center>
         </div>);
     }
-
 }
 
 function mapStateToProps(state, ownProps) {
-
     return {
     };
 }
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-
     }, dispatch);
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Window);

@@ -44,3 +44,9 @@
       display:inline-block;
       margin: 4px;
     }
+    input:focus::-webkit-input-placeholder { 
+      color:transparent;
+   }
+    input:focus:-moz-placeholder {
+       color:transparent; 
+    }

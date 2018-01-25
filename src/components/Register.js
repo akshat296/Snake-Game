@@ -11,7 +11,7 @@ class Register extends Component {
     username: "",
     password: "",
     confirm_password: "",
-    email: ""  
+    email: ""
     };
      this.username = this.username.bind(this);
      this.password = this.password.bind(this);
@@ -23,11 +23,14 @@ password(event){
   this.setState({password: event.target.value});
 }
 confirm_password(event){
-    this.setState({confirm_password: event.target.value});
+  this.setState({confirm_password: event.target.value});
   }
 email(event){
-    this.setState({email: event.target.value});
-  }
+  this.setState({email: event.target.value});
+}
+registerUser(event){
+  
+}
   render() {
     return (
       <div className="App">
@@ -41,7 +44,8 @@ email(event){
                    name = "email"
                    placeholder = "Username"
                    value = {this.state.username} 
-                   onChange= {this.username}/>
+                   onChange= {this.username}
+                   />
             <br/>
             <input className = "center-text textfield"      
                    type = "password"
@@ -65,7 +69,8 @@ email(event){
             <br/>
             <input className = "center-text submit btn btn-primary" 
                    type = "submit" 
-                   value = "Sign up"/><br/>
+                   value = "Sign up"
+                   onClick={this.registerUser}/><br/>
         </div>
        </div>
       </div>

@@ -192,22 +192,15 @@ keyPush(evt){
     }
 }
   render() {
-    
-//console.log("in render this",this)
-console.log("in render state",this.state)
-//console.log("in render this 2",this)
+    console.log("in render state",this.state)
     return (
-        
             <canvas id={this.state.name} width= "400" height="400"  
             style={{backgroundColor:"silver"}} >
-           
-          
             </canvas> 
     );
   }
 }
 function mapStateToProps(state, ownProps) {
-  
     return {
       
     };
