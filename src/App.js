@@ -4,8 +4,8 @@ import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
-import Register from './components/Register';
-import SignIn from './components/SignIn';
+import Register from './components/Pages/Register';
+import SignIn from './components/Pages/SignIn';
 
 class App extends Component {
 

@@ -9,33 +9,56 @@ const webpackConfig = require('./webpack.config.js');
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
+const chatio = io.of('/chat');
+const gameio = io.of('/game');
 
 app.use(express.static(__dirname +'/public'));
 app.use(webpackDevMiddleware(webpack(webpackConfig)));
 app.use(bodyParser.urlencoded({extended:false}));
-io.on('connection', socket => {
+
+var numUsers = 0;
+chatio.on('connection' , socket => {
+    var addedUser = false;
+
+    console.log("New User : ",socket.id);
     socket.on('message',body =>{
         socket.broadcast.emit('message', {
             body,
-            from:'me'
+            from:socket.username
         })
-    }),
-    socket.on('game',name =>{
-        console.log('2',name);
+    })
+    socket.on('add user', function (username){
+        if(addedUser) return;
         
+        socket.username = username;
+        ++numUsers;
+        socket.emit('login',{
+            numUsers: numUsers
+        });
+        socket.broadcast.emit('user joined', {
+            username: socket.username,
+            numUsers: numUsers
+        });
+    });
+    socket.on('disconnect', function(){
+        if(addedUser){
+            --numUsers;
+        }
+        socket.broadcast.emit('user left', {
+            username: socket.username,
+            numUsers: numUsers
+        })
+    });
+});
+
+gameio.on('connection', socket => {
+    socket.on('game',name =>{
         socket.broadcast.emit('game', {
             name
         })
     }),
-    socket.on('sync',sync =>{
-        socket.broadcast.emit('sync', {
-            sync
-        })
-    }),
     socket.on('player',(object) =>{
-        //socket.join(name);
-         console.log("server player 2 object",object);
          socket.broadcast.emit('player', object)
     })
 });
-server.listen(3000);
+server.listen(3002);

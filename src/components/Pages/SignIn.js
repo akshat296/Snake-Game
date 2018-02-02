@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import '../App.css';
+import '../../App.css';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Navigation from './Navigation';
+import Navigation from '../Navigation';
 import { bindActionCreators } from 'redux';
-import { getUsername } from '../actions/loginActions';
-import Game from './Game';
-import Window from './Window'
+import { getUsername } from '../../actions/loginActions';
+import Game from '../Game';
+import Window from '../Window'
 
 class SignIn extends Component {
   constructor(props) {
