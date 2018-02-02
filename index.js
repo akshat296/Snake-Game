@@ -16,6 +16,7 @@ app.use(express.static(__dirname +'/public'));
 app.use(webpackDevMiddleware(webpack(webpackConfig)));
 app.use(bodyParser.urlencoded({extended:false}));
 
+var port = 3002;
 var numUsers = 0;
 chatio.on('connection' , socket => {
     var addedUser = false;
@@ -61,4 +62,5 @@ gameio.on('connection', socket => {
          socket.broadcast.emit('player', object)
     })
 });
-server.listen(3002);
+console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
+server.listen(port);

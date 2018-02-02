@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../App.css';
 import { connect } from 'react-redux';
 import Navigation from '../Navigation';
+import { registerUser } from '../../actions/registerActions'
 import { bindActionCreators } from 'redux';
 
 class Register extends Component {
@@ -84,12 +85,14 @@ function mapStateToProps(state, ownProps) {
   return {
     //courses: state.courses,
    // statusToast: state.statusToast
+    register: state.register
 
   };
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
   //  getUsername: getUsername
+  registerUser: registerUser
    
   }, dispatch);
 

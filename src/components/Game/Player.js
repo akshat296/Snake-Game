@@ -23,7 +23,6 @@ class Player extends Component {
         this.keyPush = this.keyPush.bind(this);
     }
     componentWillMount() {
-      
             this.setState({ name: this.props.name });
       
     }
