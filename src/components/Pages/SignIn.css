@@ -1,20 +1,8 @@
 .textfield{
-    border-radius: 5px;
-    height:30px;
-     width: 50%;
-     margin: auto;
-     display:block;
-     
-     
-    }
-    .textfieldError{
-      border-color: #dc3545;
-      border-width: 0.5%;
-      background-image: url('./resources/images/Error.svg');
-      background-size: 192% 90%;
-      background-position: left;
-      background-repeat: no-repeat;
-      text-indent: 20px;
+    width: 100%;
+    border-style: round;
+    margin: 3px;
+    
     }
     .submit{
       width:40%;

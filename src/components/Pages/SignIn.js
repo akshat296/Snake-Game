@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 import Navigation from '../Navigation';
 import { bindActionCreators } from 'redux';
 import { getUsername } from '../../actions/loginActions';
-import Game from '../Game';
-import Window from '../Window'
+import Window from '../Window';
 
 class SignIn extends Component {
   constructor(props) {
@@ -42,6 +41,7 @@ checkUser(){
         <Window />
           <div className = "col-lg-3" id = "parent">
           <Navigation/>
+          <div className="bottom-space">
             <h2>Login</h2><br/>
             <input className = "center-text textfield"
                    type = "text"
@@ -62,13 +62,13 @@ checkUser(){
                    value = "Login" onClick ={this.checkUser}/><br/>
           <Link to = '/register'>Not registered yet! Sign Up!</Link>
         </div>
+        </div>
       </div>
       </div>
     );
   }
 }
 function mapStateToProps(state, ownProps) {
-  console.log("mapstatetoprops",state);
     return {
       user: state.pika
     };

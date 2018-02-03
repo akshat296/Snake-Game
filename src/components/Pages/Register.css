@@ -1,0 +1,69 @@
+.submit {
+    width: 40%;
+    text-align: center;
+    margin: auto;
+    display: block;
+    padding: auto;
+    align-items: center;
+}
+
+p.error {
+    color: red;
+}
+
+table.myTable {
+    box-shadow: 5px 5px 5px 5px grey, 5px 5px 5px 5px red;
+    padding: 30px;
+    transform: translate3d(0, 0, 0);
+    display: table;
+    width: 50%;
+    animation-duration: 0.82s;
+    background-color: grey;
+    animation-timing-function: linear;
+}
+
+.regError {
+    box-shadow: 5px 5px 5px 5px grey, 5px 5px 5px 5px red;
+    position: relative;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    padding: 0px;
+    animation-name: box;
+    animation-duration: 2s;
+    background-color: white;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+@keyframes box {
+    10%,
+    90% {
+        box-shadow: 5px 5px 5px 5px red, 5px 5px 5px 5px red;
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%,
+    80% {
+        box-shadow: 5px 5px 5px 5px navy, 5px 5px 5px 5px lightblue;
+        transform: translate3d(2px, 0, 0);
+    }
+    30%,
+    50%,
+    70% {
+        box-shadow: 5px 5px 5px 5px red, 5px 5px 5px 5px red;
+        transform: translate3d(4px, 0, 0);
+    }
+    40%,
+    60% {
+        box-shadow: 5px 5px 5px 5px navy, 5px 5px 5px 5px lightblue;
+        transform: translate3d(-5px, 0, 0);
+    }
+}
+input#Register {
+    border: 2px blue;
+    border-radius: 25px;
+    background: #375371;
+    padding: 10px;
+    box-shadow: 5px 5px 5px grey;
+    color: white;
+}
