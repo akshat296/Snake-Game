@@ -8,7 +8,10 @@
 }
 
 p.error {
-    color: red;
+    height: 30px;
+    width: 40%;
+    position: relative;
+    background-color: #d9534f;
 }
 
 table.myTable {
@@ -21,6 +24,16 @@ table.myTable {
     background-color: grey;
     animation-timing-function: linear;
 }
+.error{
+    position: relative;
+    display: right;
+    height: 30px;
+    background: #d9534f;
+    width: 100%;
+    padding-left:50%;
+    
+}
+
 
 .regError {
     box-shadow: 5px 5px 5px 5px grey, 5px 5px 5px 5px red;
@@ -59,6 +72,7 @@ table.myTable {
         transform: translate3d(-5px, 0, 0);
     }
 }
+
 input#Register {
     border: 2px blue;
     border-radius: 25px;

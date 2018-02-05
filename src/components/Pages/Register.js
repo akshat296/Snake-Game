@@ -18,7 +18,7 @@ class Register extends Component {
 			email: "",
 			result: "",
 			error: "",
-			animation:0 
+			animation: 0
 		};
 		this.username = this.username.bind(this);
 		this.password = this.password.bind(this);
@@ -66,17 +66,18 @@ class Register extends Component {
 		else {
 			this.setState({ "error": Error });
 		}
-		
-		Error ? this.setState((animation)=>({animation:1})) : this.setState({animation:0}) ;
-		
+
+		Error ? this.setState((animation) => ({ animation: 1 })) : this.setState({ animation: 0 });
+
 	}
-	componentDidUpdate(){
-		if(this.state.animation === 1){
-		setTimeout(function (){ this.setState({animation:0});}.bind(this),830);
-	}}
+	componentDidUpdate() {
+		if (this.state.animation === 1) {
+			setTimeout(function () { this.setState({ animation: 0 }); }.bind(this), 830);
+		}
+	}
 	render() {
 
-		const regTable = this.state.animation ? 'myTable regError' : 'myTable' ;
+		const regTable = this.state.animation ? 'myTable regError' : 'myTable';
 		return (
 			<div className="App">
 				<div className="row">
@@ -94,32 +95,42 @@ class Register extends Component {
 							<tbody>
 								<tr>
 									<td>
-										<p className="center-text error">{this.state.error}</p>
+										<div className={`error ${this.state.error.username}`}>Username taken</div>
+										<div className={`error ${this.state.error.email}`}>Please enter a valid Email Id</div>
+										<div className={`error ${this.state.error.password}`}>Password Does not match</div>
+									</td>
+									<td>
+										
+
 										<input className="center-text textfield"
 											type="text"
-											name="email"
+											name="username"
 											placeholder="Username"
 											value={this.state.username}
 											onChange={this.username}
 										/>
+
 										<input className="center-text textfield"
 											type="text"
 											name="email"
 											placeholder="Email"
 											value={this.state.email}
 											onChange={this.email} />
+
 										<input className="center-text textfield"
 											type="password"
 											name="password"
 											placeholder="Password"
 											value={this.state.password}
 											onChange={this.password} />
+
 										<input className="center-text textfield"
 											type="password"
 											name="confirm_password"
 											placeholder="Confirm Password"
 											value={this.state.confirm_password}
 											onChange={this.confirm_password} />
+
 									</td>
 								</tr>
 								<tr>
@@ -138,6 +149,7 @@ class Register extends Component {
 							</tbody>
 						</table>
 					</center>
+					<div className="center-text error">{this.state.error}</div>
 				</div>
 			</div>
 
