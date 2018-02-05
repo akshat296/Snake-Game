@@ -3,9 +3,7 @@
     height:30px;
      width: 50%;
      margin: auto;
-    display:block;
-     
-     
+     display:block;
     }
     .textfieldError{
       border-color: #dc3545;

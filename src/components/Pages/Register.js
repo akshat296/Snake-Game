@@ -17,7 +17,7 @@ class Register extends Component {
 			confirm_password: "",
 			email: "",
 			result: "",
-			error: "",
+			error: {email:{status:"hide",message:""},password:{status:"hide",message:""}},
 			animation: 0
 		};
 		this.username = this.username.bind(this);
@@ -41,7 +41,6 @@ class Register extends Component {
 
 	}
 	waiting() {
-
 		if (this.props.register.register.affectedRows === 1) {
 			this.setState({ result: "Congrats, you've successfully registered" });
 		}
@@ -50,24 +49,33 @@ class Register extends Component {
 		}
 	}
 	registerUser(event) {
-		let Error = "";
+		let Error = {email:{status:"hide",message:""},password:{status:"hide",message:""}};
+		this.setState({ "error": Error });
 		if (this.state.password !== this.state.confirm_password) {
-			Error = Error + "Password does not Match, ";
+			Error.password.status = "show";
+			Error.password.message = "Password does not match";
+			
 		}
-		if (this.state.email !== /^.+@.+$/) {
-			Error = Error + "Enter a valid email. ";
+		if(this.state.password.length<4){
+			Error.password.status = "show";
+			Error.password.message = "Password should be of three or more characters";
 		}
-
-		if (Error === "") {
-			console.log("state check", this.state.username, this.state.email, this.state.password, this.state.confirm_password)
+		if(this.state.password === ""){
+			Error.password.status = "show";
+			Error.password.message = "Password should not be blank";
+		}
+		if (!(/^.+@.+$/).test(this.state.email)) {
+			Error.email.status = "show";
+			Error.email.message = "Please enter a valid Email ID";
+		}
+		if (Error.email.status === "hide" || Error.password.status === "hide" ) {
 			this.props.registerUser(this.state.username, this.state.email, this.state.password)
 			setTimeout(this.waiting, 4000);
 		}
 		else {
 			this.setState({ "error": Error });
 		}
-
-		Error ? this.setState((animation) => ({ animation: 1 })) : this.setState({ animation: 0 });
+		Error.email.status === 'show' || Error.password.status === 'show' ? this.setState((animation) => ({ animation: 1 })) : this.setState({ animation: 0 });
 
 	}
 	componentDidUpdate() {
@@ -75,33 +83,19 @@ class Register extends Component {
 			setTimeout(function () { this.setState({ animation: 0 }); }.bind(this), 830);
 		}
 	}
+	
 	render() {
-
-		const regTable = this.state.animation ? 'myTable regError' : 'myTable';
+		const regTable = this.state.animation ? 'wrapper regError' : 'wrapper';
 		return (
+			
 			<div className="App">
 				<div className="row">
 					<Navigation />
 					<center>
-						<table className={regTable}>
-							<thead>
-								<tr>
-									<th>
-										<h2 className="center-text">Register</h2>
-										<br />
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<div className={`error ${this.state.error.username}`}>Username taken</div>
-										<div className={`error ${this.state.error.email}`}>Please enter a valid Email Id</div>
-										<div className={`error ${this.state.error.password}`}>Password Does not match</div>
-									</td>
-									<td>
-										
-
+					<h2 className="center-text">Register</h2>
+					<br />
+					 <h4 className="center-text text text-success">{this.state.result}</h4> 
+						<div className={regTable}>
 										<input className="center-text textfield"
 											type="text"
 											name="username"
@@ -109,32 +103,27 @@ class Register extends Component {
 											value={this.state.username}
 											onChange={this.username}
 										/>
-
+										<div className={`error ${this.state.error.username}`}>Username taken</div>
 										<input className="center-text textfield"
 											type="text"
 											name="email"
 											placeholder="Email"
 											value={this.state.email}
 											onChange={this.email} />
-
+										<div className={`error ${this.state.error.email.status}`}>{this.state.error.email.message}</div>
 										<input className="center-text textfield"
 											type="password"
 											name="password"
 											placeholder="Password"
 											value={this.state.password}
 											onChange={this.password} />
-
 										<input className="center-text textfield"
 											type="password"
 											name="confirm_password"
 											placeholder="Confirm Password"
 											value={this.state.confirm_password}
 											onChange={this.confirm_password} />
-
-									</td>
-								</tr>
-								<tr>
-									<td>
+										<div className={`error ${this.state.error.password.status}`}>{this.state.error.password.message}</div>	
 										<br />
 										<br />
 										<input className="center-text submit btn btn-primary"
@@ -142,14 +131,10 @@ class Register extends Component {
 											value="Sign up"
 											onClick={this.registerUser} /><br />
 										<div className="center-text .text-success">
-											{this.state.result}
+											{/* {this.state.result} */}
 										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+										</div>	
 					</center>
-					<div className="center-text error">{this.state.error}</div>
 				</div>
 			</div>
 

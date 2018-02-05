@@ -1,24 +1,21 @@
+.textfield{
+    width: 90%;
+}
 .submit {
     width: 40%;
     text-align: center;
     margin: auto;
     display: block;
+    position: relative;
     padding: auto;
     align-items: center;
 }
-
-p.error {
-    height: 30px;
-    width: 40%;
-    position: relative;
-    background-color: #d9534f;
-}
-
-table.myTable {
+div.wrapper {
     box-shadow: 5px 5px 5px 5px grey, 5px 5px 5px 5px red;
     padding: 30px;
     transform: translate3d(0, 0, 0);
-    display: table;
+    display: grid;
+    grid-template-columns: 1fr;
     width: 50%;
     animation-duration: 0.82s;
     background-color: grey;
@@ -26,15 +23,19 @@ table.myTable {
 }
 .error{
     position: relative;
-    display: right;
-    height: 30px;
+    bottom: 53%;
+    height: auto;
     background: #d9534f;
-    width: 100%;
-    padding-left:50%;
-    
+    width: 90%;
+    display:none;
+    border-radius: 5px;
 }
-
-
+.show {
+    display: block;
+}
+.hide{
+    display:none;
+}
 .regError {
     box-shadow: 5px 5px 5px 5px grey, 5px 5px 5px 5px red;
     position: relative;
@@ -71,13 +72,4 @@ table.myTable {
         box-shadow: 5px 5px 5px 5px navy, 5px 5px 5px 5px lightblue;
         transform: translate3d(-5px, 0, 0);
     }
-}
-
-input#Register {
-    border: 2px blue;
-    border-radius: 25px;
-    background: #375371;
-    padding: 10px;
-    box-shadow: 5px 5px 5px grey;
-    color: white;
 }
