@@ -3,8 +3,9 @@ import '../../App.css';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-
-class Register extends Component {
+import './navigation.css';
+import logo from "../../resources/images/jumla.svg"
+class Navigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,13 +13,14 @@ class Register extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="nav-bar">
+
         <ul className='center-text'>
+        <div className="pull-left logo"><img src={logo} height="30px" width="50px" alt="Loading Failed"/>Snakers</div>
           <li><Link to="/">Home</Link></li>
           <li><Link to='/register'>Register</Link></li>
-          <li><Link to='/signin'>Sign In</Link></li>
+          <li><Link to='/login'>Login</Link></li>
         </ul>
-        <hr />
       </div>
     );
   }
@@ -40,4 +42,4 @@ function mapDispatchToProps(dispatch) {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

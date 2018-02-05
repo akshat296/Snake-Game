@@ -1,5 +1,5 @@
 import "./loading.css";
-import React ,{Component} from 'react';
+import React from 'react';
 export const Loading = () => {return (<div class='loader'>
     <div class='loader--dot'></div>
     <div class='loader--dot'></div>
@@ -8,5 +8,4 @@ export const Loading = () => {return (<div class='loader'>
     <div class='loader--dot'></div>
     <div class='loader--dot'></div>
     <div class='loader--text'></div>
- 
   </div>)};

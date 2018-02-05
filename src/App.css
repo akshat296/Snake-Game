@@ -25,7 +25,8 @@
       height:100%;
       width:25%;
       position: absolute;
-      top: 0;
+      top: 25px;
+      vertical-align: auto;
       bottom: 0;
       background: lightcoral;
     }

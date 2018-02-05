@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Game from './Game'
-import Chat from './Chat'
-
+import Game from '../Game'
+import Chat from '../Chat'
+import './Window.css';
 class Window extends Component {
 
     
     render() {
-        return (<div>
+        return (<div className = "test">
             <center>
                 <Game />
             </center>
-            <div style={{position:'fixed',top:'0px',right:'0px',marginRight:'0 px',marginTop:'0px'}}>
+            <div style={{position:'fixed',top:'30px',right:'0px',marginRight:'0 px',marginTop:'0px'}}>
                 <Chat />
             </div>
         </div>);

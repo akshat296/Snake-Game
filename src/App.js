@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Register from './components/Pages/Register';
-import SignIn from './components/Pages/SignIn';
+import Main from './components/Pages/Main';
 
 class App extends Component {
 
@@ -13,9 +13,9 @@ class App extends Component {
      return (
       <Router>
         <div>
-          <Route exact path = "/" component = {SignIn} />
+          <Route exact path = "/" component = {Main} />
           <Route path = "/register" component = {Register} />
-          <Route path = "/signin" component = {SignIn} />
+          <Route path = "/login" component = {Main} />
         </div>
       </Router>
      );

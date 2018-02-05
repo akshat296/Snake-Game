@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import Navigation from '../Navigation';
 import { bindActionCreators } from 'redux';
 import { getUsername } from '../../actions/loginActions';
-import Window from '../Window';
+import Window from './Window';
 
-class SignIn extends Component {
+class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,11 +36,14 @@ checkUser(){
 
   render() {
     return (
+
         <div className = "App">
+        <hr />
         <div className = "row">
+        <Navigation />
         <Window />
           <div className = "col-lg-3" id = "parent">
-          <Navigation/>
+         
           <div className="bottom-space">
             <h2>Login</h2><br/>
             <input className = "center-text textfield"
@@ -80,5 +83,5 @@ function mapStateToProps(state, ownProps) {
   
   }
   
-  export default connect(mapStateToProps,mapDispatchToProps)(SignIn);
+  export default connect(mapStateToProps,mapDispatchToProps)(Main);
   

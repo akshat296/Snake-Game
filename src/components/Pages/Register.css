@@ -16,6 +16,7 @@ div.wrapper {
     transform: translate3d(0, 0, 0);
     display: grid;
     grid-template-columns: 1fr;
+    border-radius: 100%;
     width: 50%;
     animation-duration: 0.82s;
     background-color: grey;
@@ -56,7 +57,7 @@ div.wrapper {
 @keyframes box {
     10%,
     90% {
-        box-shadow: 5px 5px 5px 5px red, 5px 5px 5px 5px red;
+        box-shadow: 15px 5px 5px 5px red, 5px 5px 5px 5px red;
         transform: translate3d(-1px, 0, 0);
     }
     20%,
@@ -67,7 +68,7 @@ div.wrapper {
     30%,
     50%,
     70% {
-        box-shadow: 5px 5px 5px 5px red, 5px 5px 5px 5px red;
+        box-shadow: 15px 15px 15px 15px red, 15px 5px 5px 15px red;
         transform: translate3d(4px, 0, 0);
     }
     40%,

@@ -1,0 +1,11 @@
+.nav-bar{
+    z-index: 10;
+    position: fixed;
+    padding :auto;
+    right:0;
+    top:0;
+    left:0;
+      
+    width:100%;
+    background-color:azure;
+}
