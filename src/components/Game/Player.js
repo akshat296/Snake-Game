@@ -152,7 +152,6 @@ class Player extends Component {
         }
     }
     render() {
-        //console.log("in render state", this.state)
         return (
             <canvas id={this.state.name} width="400" height="400"
                 style={{ backgroundColor: "silver" }} >

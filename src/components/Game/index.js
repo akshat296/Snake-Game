@@ -20,7 +20,7 @@ class Game extends Component {
         this.socket.on('game', game => {
             this.setState({
                 games: [game, ...this.state.games]
-            })
+            });
         })
         
     }
@@ -46,11 +46,11 @@ class Game extends Component {
                         </div>)
                         });
 
-        return (<div>
-            <center>
+        return (<div >
+               
                 <input type="text" placeholder="Enter a name..." onKeyUp={this.handleGame} />
                 {games}
-            </center>
+           
         </div>);
     }
 }

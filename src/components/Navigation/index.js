@@ -13,15 +13,25 @@ class Navigation extends Component {
   }
   render() {
     return (
-      <div className="nav-bar">
 
-        <ul className='center-text'>
-        <div className="pull-left logo"><img src={logo} height="30px" width="50px" alt="Loading Failed"/>Snakers</div>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to='/register'>Register</Link></li>
-          <li><Link to='/login'>Login</Link></li>
-        </ul>
+      <div className="nav-bar">
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#"><span>
+                <img src={logo} height="30px" width="50px" alt="Loading Failed" /></span>Snakers</a>
+            </div>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><Link to='/register'><span class="glyphicon glyphicon-user"></span> Sign Up</Link></li>
+              <li><Link to='/login'><span class="glyphicon glyphicon-log-in"></span> Login</Link></li>
+            </ul>
+          </div>
+        </nav>
       </div>
+
     );
   }
 }

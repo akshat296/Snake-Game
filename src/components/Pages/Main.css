@@ -3,5 +3,45 @@
     border-style: round;
     margin: 3px;
     }
-    
+    #parent {
+        text-align:center;
+        height:100%;
+        width:20%;
+
+        position: absolute;
+        top: 3%;
+        vertical-align: auto;
+        bottom: 0;
+        
+        background: #333;
+      }
+        .center-text {
+          text-align:center;
+        }
+        .center {
+          margin:auto;
+        }
+        .left {
+          margin:auto auto auto 0;
+        }
+        .right {
+          margin:auto 0 auto auto;
+        }
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+         
+        }
+       
+        li{
+          display:inline-block;
+          margin: 4px;
+        }
+        input:focus::-webkit-input-placeholder { 
+          color:transparent;
+       }
+        input:focus:-moz-placeholder {
+           color:transparent; 
+        }  
     

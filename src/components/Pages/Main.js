@@ -1,70 +1,26 @@
 import React, { Component } from 'react';
-import '../../App.css';
-import { Link } from 'react-router-dom';
+import './Main.css';
+
 import { connect } from 'react-redux';
 import Navigation from '../Navigation';
 import { bindActionCreators } from 'redux';
-import { getUsername } from '../../actions/loginActions';
 import Window from './Window';
+import Sidebar from '../Sidebar';
 
 class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    username: "test",
-    password: "12345"
-    };
-     this.username = this.username.bind(this);
-     this.function2 = this.function2.bind(this);
-     this.checkUser = this.checkUser.bind(this);
-     this.password = this.password.bind(this);
-  }
-username(event){
-  this.setState({username: event.target.value});
-}
-password(event){
-  this.setState({password: event.target.value});
-}
-function2(){
-  console.log("akshatq",this.props.user.login[0].name);
-}
-checkUser(){
-  this.props.getUsername(this.state.username,this.state.password);
-  setTimeout(this.function2, 3000);
-  console.log("username func",this.props);
-  }
+  
 
   render() {
     return (
-
         <div className = "App">
         <hr />
         <div className = "row">
         <Navigation />
-        <Window />
           <div className = "col-lg-3" id = "parent">
-         
-          <div className="bottom-space">
-            <h2>Login</h2><br/>
-            <input className = "center-text textfield"
-                   type = "text"
-                   name = "email"
-                   placeholder = "Username or Email"
-                   value = {this.state.username} 
-                   onChange= {this.username}/>
-            <br/>
-            <input className = "center-text textfield"
-                   type = "text"
-                   name = "password" 
-                   placeholder = "Password"
-                   value = {this.state.password}
-                   onChange = {this.password} />
-            <br/><br/>
-            <input className = "center-text submit btn btn-primary"
-                   type = "submit" 
-                   value = "Login" onClick ={this.checkUser}/><br/>
-          <Link to = '/register'>Not registered yet! Sign Up!</Link>
+         <Sidebar /> 
         </div>
+        <div className="col-lg-9">
+        <Window />
         </div>
       </div>
       </div>
@@ -73,12 +29,11 @@ checkUser(){
 }
 function mapStateToProps(state, ownProps) {
     return {
-      user: state.pika
     };
   }
   function mapDispatchToProps(dispatch) {
     return bindActionCreators({
-      getUsername: getUsername
+     
     }, dispatch);
   
   }

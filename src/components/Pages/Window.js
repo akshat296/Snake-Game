@@ -8,13 +8,12 @@ class Window extends Component {
 
     
     render() {
-        return (<div className = "test">
-            <center>
+        return (<div className="test">
+         <Chat />
                 <Game />
-            </center>
-            <div style={{position:'fixed',top:'30px',right:'0px',marginRight:'0 px',marginTop:'0px'}}>
-                <Chat />
-            </div>
+            
+               
+           
         </div>);
     }
 }

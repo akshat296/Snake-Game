@@ -1,12 +1,7 @@
-test{
-    background-color: blueviolet;
-    height: 100%;
+.test{
+    position: fixed;
     width:100%;
-    color:green;
-}
-test1{
-    background-color: green;
-}
-test2{
-    background-color: yellow;
+    top: 60px;
+    right:0;
+    left:19.2%;
 }

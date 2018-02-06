@@ -9,4 +9,3 @@ export const getUsername = (email, password) => {
         }).catch((error)=> {dispatch({type: "ERROR",status: 'error'})});
     }
  };
- 
