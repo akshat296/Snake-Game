@@ -1,24 +1,10 @@
-.loginWrapper{
-    padding-top: 30%;
-    color:black;
-}
-.textfield{
-    color:black;
-}
-h2.heading{
+.header{
     color:white;
+    text-align: center;
 }
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color:#333;
-    opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #333;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-    color: #333;
+input:focus::-webkit-input-placeholder 
+{
+    color: transparent;
 }
 a {
     color:white;

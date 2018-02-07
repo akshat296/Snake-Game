@@ -1,3 +1,20 @@
 .navbar-logo{
     margin-right:10px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
+@media only screen and (max-width: 770px){
+    .nav-bar{
+        text-align: center;
+       
+    }
+    
+}
+
+.nav-hamburger{
+    padding-right:20px;
+    color:greenyellow;
+    font-size:18px;
+    align-content: center;
+    
 }

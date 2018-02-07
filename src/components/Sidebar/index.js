@@ -33,8 +33,9 @@ class Sidebar extends Component {
 
 	render() {
 		return (
-			<div className="loginWrapper">
-				<h2 className="heading">Login</h2><br />
+			<div>
+				<h2 className="header">Login</h2>
+				<br />
 				<input className="center-text textfield"
 					type="text"
 					name="email"
@@ -52,7 +53,7 @@ class Sidebar extends Component {
 				<input className="center-text submit btn btn-primary"
 					type="submit"
 					value="Login" onClick={this.checkUser} /><br />
-				<Link to='/register'>Not registered yet! Sign Up!</Link>
+				<Link to='/register' className="text-success">Not registered yet! Sign Up!</Link>
 			</div>);
 	}
 }

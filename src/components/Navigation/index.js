@@ -11,14 +11,17 @@ class Navigation extends Component {
     this.state = {
     };
   }
+  
+
   render() {
     return (
 
-      <div className="nav-bar">
-        <nav className="navbar navbar-inverse">
+      <div className="nav-bar navbar-fixed-top" id={this.props.id}>
+        <nav className="navbar-inverse">
           <div className="container-fluid">
             <ul className="nav navbar-nav">
               <li className="navbar-logo">
+              <span className="nav-hamburger" onClick={this.props.toggleMenu}>&#9776;</span>
              <img src={logo} height="50px" alt="Failed to Load Logo" width="30px" />
               </li>
               <li className="active">

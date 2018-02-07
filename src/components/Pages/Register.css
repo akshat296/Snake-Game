@@ -1,5 +1,14 @@
 .textfield{
-    width: 90%;
+    width: 100%;
+    text-align: center;
+
+}
+.row{
+    padding:3%;
+}
+input:focus::-webkit-input-placeholder 
+{
+    color: transparent;
 }
 .submit {
     width: 40%;
@@ -36,9 +45,12 @@ div.wrapper {
     bottom: 53%;
     height: auto;
     background: #d9534f;
-    width: 90%;
+    width: 100%;
     display:none;
     border-radius: 5px;
+}
+.nav-hamburger{
+    margin-right: 3px; 
 }
 .show {
     display: block;
@@ -64,10 +76,13 @@ div.wrapper {
     font: outline;
     margin-top:3%; 
 }
+.navbar-right{
+    padding-right:20px;
+}
 @keyframes box {
     10%,
     90% {
-        box-shadow: 15px 5px 5px 5px red, 5px 5px 5px 5px red;
+        box-shadow: 5px 5px 5px 5px red, 5px 5px 5px 5px red;
         transform: translate3d(-1px, 0, 0);
     }
     20%,
@@ -78,12 +93,69 @@ div.wrapper {
     30%,
     50%,
     70% {
-        box-shadow: 15px 15px 15px 15px red, 15px 5px 5px 15px red;
+        box-shadow: 5px 5px 5px 5px red, 5px 5px 5px 5px red;
         transform: translate3d(4px, 0, 0);
     }
     40%,
     60% {
         box-shadow: 5px 5px 5px 5px navy, 5px 5px 5px 5px lightblue;
         transform: translate3d(-5px, 0, 0);
+    }
+}
+@media only screen and (max-width: 1500px){
+    .row{
+        padding:5% 0%;
+       
+    }
+    
+}
+@media only screen and (max-width: 770px){
+    .row{
+        padding:35% 0%;
+       
+    }
+    div.wrapper {
+        border-radius: 0%;
+        margin:auto !important;
+        padding:0px;
+        width:90%;
+        }
+    
+}
+@media only screen and (max-width: 400px){
+   
+    .row{
+        padding:80% 1%;
+    }
+    div.wrapper {
+    border-radius: 0%;
+    margin:auto !important;
+    padding:0px;
+    width:100%;
+    
+    }
+}
+@media only screen and (max-width: 300px){
+   
+    .row{
+        padding:80% 0%;
+    }
+    div.wrapper {
+    border-radius: 0%;
+    margin:auto !important;
+    padding:0px;
+    width:100%;
+    
+    }
+    .textfield{
+        width: 50%;
+        text-align: center;
+    
+    }
+    .error{
+       
+        width: 50%;
+        display:none;
+        border-radius: 5px;
     }
 }

@@ -1,0 +1,36 @@
+.main{
+    display:grid;
+   position: relative;
+   height: 100%;
+
+   top:50px;
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-gap:2em;
+}
+.col-1{
+    background:#333;
+    text-align: center;
+    padding:40% 4%;
+    
+}
+.parent{
+    height: 100%;
+    width:100;
+}
+@media only screen and (max-width: 770px){
+    .main{
+        grid-template-columns: 2fr;
+       
+    }
+    .col-1{
+        padding:40% 2%;
+    }
+}
+@media only screen and (max-width: 320px){
+    .main{
+        grid-template-columns: 2fr;
+    }
+    .col-1{
+        padding:70% 1%;
+    }
+}

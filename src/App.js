@@ -12,7 +12,7 @@ class App extends Component {
   render() {
      return (
       <Router>
-        <div>
+        <div className="parent">
           <Route exact path = "/" component = {Main} />
           <Route path = "/register" component = {Register} />
           <Route path = "/login" component = {Main} />

@@ -58,9 +58,9 @@ class Chat extends Component {
             return <div key={index}><li><b>{message.from}</b> {message.body}</li><br /></div>;
         })
         return (<div >
-         <br/> <br/> <br/> <br/> <br/> <br/>
                 <input type="text" placeholder="Enter a Name..." onKeyUp={this.handleUsername}/>
                 <br/>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt distinctio adipisci voluptatibus consectetur repudiandae incidunt, officia, debitis, nemo vero aspernatur et corrupti alias sint possimus consequuntur ducimus. Dicta, consectetur quasi.
                 <input type="text" placeholder="Enter a Value..." onKeyUp={this.handleSubmit}/>
                 {messages}
         </div>);

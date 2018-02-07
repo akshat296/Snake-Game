@@ -104,8 +104,8 @@ class Register extends Component {
 		const regTable = this.state.animation ? 'wrapper regError' : 'wrapper';
 		return (
 			<div className="App">
+			<Navigation />
 				<div className="row">
-					<Navigation />
 					<center>
 						<h2 className="center-text registerText">Registration Page</h2>
 						<br />
