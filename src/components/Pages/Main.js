@@ -13,9 +13,10 @@ class Main extends Component {
   render() {
     return (
         <div className = "App">
+        <Navigation />
         <hr />
         <div className = "row">
-        <Navigation />
+        
           <div className = "col-lg-3" id = "parent">
          <Sidebar /> 
         </div>
@@ -28,7 +29,7 @@ class Main extends Component {
   }
 }
 function mapStateToProps(state, ownProps) {
-    return {
+    return{
     };
   }
   function mapDispatchToProps(dispatch) {

@@ -15,18 +15,19 @@ class Navigation extends Component {
     return (
 
       <div className="nav-bar">
-        <nav class="navbar navbar-inverse">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="#"><span>
-                <img src={logo} height="30px" width="50px" alt="Loading Failed" /></span>Snakers</a>
-            </div>
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
+        <nav className="navbar navbar-inverse">
+          <div className="container-fluid">
+            <ul className="nav navbar-nav">
+              <li className="navbar-logo">
+             <img src={logo} height="50px" alt="Failed to Load Logo" width="30px" />
+              </li>
+              <li className="active">
+              <a href="#">Home</a>
+              </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><Link to='/register'><span class="glyphicon glyphicon-user"></span> Sign Up</Link></li>
-              <li><Link to='/login'><span class="glyphicon glyphicon-log-in"></span> Login</Link></li>
+            <ul className="nav navbar-nav navbar-right">
+              <li><Link to='/register'><span className="glyphicon glyphicon-user"></span> Sign Up</Link></li>
+              <li><Link to='/login'><span className="glyphicon glyphicon-log-in"></span> Login</Link></li>
             </ul>
           </div>
         </nav>
