@@ -31,11 +31,6 @@ class Player extends Component {
                 px: obj.px, py: obj.py, gs: obj.gs, tc: obj.tc, xv: obj.xv, yv: obj.yv, trail: obj.trail
                 ,tail: obj.tail, ax: obj.ax, ay: obj.ay, name: obj.name
             });
-            var canv = document.getElementById(this.state.name);
-            var ctx = canv.getContext('2d');
-            document.addEventListener("keydown", this.keyPush);
-            this.timer = setInterval(() => { this.game(ctx, canv) }, 1000 / 25);
-
         });
             var canv = document.getElementById(this.state.name);
             var ctx = canv.getContext('2d');
@@ -50,7 +45,6 @@ class Player extends Component {
 
 
     game(ctx, canv) {
-
         this.setState({ px: (this.state.px + this.state.xv) });
         this.setState({ py: (this.state.py + this.state.yv) });
         if (this.state.px < 0) {

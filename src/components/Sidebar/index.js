@@ -67,12 +67,12 @@ class Sidebar extends Component {
 function mapStateToProps(state, ownProps) {
 	//state is store
 	return {
-		user: state.login
+		user: state.chat
 	};
 }
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		getUsername: getUsername
+		getUsername:getUsername
 	}, dispatch);
 }
 

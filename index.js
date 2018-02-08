@@ -16,12 +16,17 @@ app.use(express.static(__dirname +'/public'));
 app.use(webpackDevMiddleware(webpack(webpackConfig)));
 app.use(bodyParser.urlencoded({extended:false}));
 
-var port = 3034;
+var port = 3037;
 var numUsers = 0;
+app.get('/getChatInfo',function(req,res){
+    chatio.adapter.rooms.data=numUsers;
+    res.send(chatio.adapter.rooms);
+});
 chatio.on('connection' , socket => {
     var addedUser = false;
-
+    
     console.log("New User : ",socket.id);
+   
     socket.on('message',body =>{
       
         socket.broadcast.emit('message', {

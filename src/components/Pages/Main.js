@@ -72,7 +72,6 @@ class Main extends Component {
   }
 }
 function mapStateToProps(state, ownProps) {
-  console.log('check',state);
   
 if(JSON.stringify(state.login) !== '{}'){
   return {

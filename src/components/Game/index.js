@@ -11,22 +11,22 @@ class Game extends Component {
         this.state = {
             games: []
         };
-        this.games=<div></div>
+        this.games = <div></div>
         this.handleGame = this.handleGame.bind(this)
     }
 
     componentDidMount() {
         this.socket = io('/game')
-       
+
         this.socket.on('game', game => {
             this.setState({
                 games: [game, ...this.state.games]
             });
         })
-        
+
     }
     handleGame(event) {
-        const name = event.target.value;
+        const name = this.props.username;
         if (event.keyCode === 13 && name) {
             const game = {
                 name
@@ -36,29 +36,36 @@ class Game extends Component {
             event.target.value = '';
         }
     }
-    
+
     render() {
-        const games = this.state.games.map((game,index) => {
+        const games = this.state.games.map((game, index) => {
             return (<div key={index}>
-                        <Player name={game.name}/>
-                        <br/>
-                        <b>{game.name}</b>
-                        <br/>
-                        </div>)
-                        });
+                <Player name={game.name} />
+                <br />
+                <b>{game.name}</b>
+                <br />
+            </div>)
+        });
 
         return (<div className="center">
-               <h2>Gamer</h2>
-                <input type="text" placeholder="Enter a name..." onKeyUp={this.handleGame} />
-                <div className="size"></div>
-                {games}
-           
+            <h2>Gamer</h2>
+            <input type="text" placeholder="Enter a name..." onKeyUp={this.handleGame} />
+            <div className="size"></div>
+            {games}
+
         </div>);
     }
 }
 
 function mapStateToProps(state, ownProps) {
+    if (JSON.stringify(state.login) !== '{}') {
+        return {
+            username: state.login.login[0].name,
+            type: state.login.type
+        };
+    }
     return {
+
     };
 }
 function mapDispatchToProps(dispatch) {

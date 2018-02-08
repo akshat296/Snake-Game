@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import io from 'socket.io-client';
 import './Chat.css'
+import { getChatInfo } from '../../actions/chatActions';
 class Chat extends Component {
     constructor(props) {
         super(props);
@@ -32,7 +33,10 @@ class Chat extends Component {
             })
         })
     }
-
+    componentWillMount(){
+        var abc = this.props.getChatInfo();
+        console.log(abc);
+    }
     handleSubmit(event) {
         const body = event.target.value;
         if (event.keyCode === 13 && body) {
@@ -71,11 +75,15 @@ class Chat extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
+    
+    console.log(state);
     return {
+
     };
 }
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
+        getChatInfo:getChatInfo
     }, dispatch);
 }
 
