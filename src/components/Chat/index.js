@@ -57,7 +57,7 @@ class Chat extends Component {
         const messages = this.state.messages.map((message, index) => {
             return <div key={index}><li className="list"><b>{message.from}</b> {message.body}</li><br /></div>;
         });
-        const chatter = this.props.username ? (<div><h2>Chatter</h2><input type="text" placeholder="Enter a Value..." onKeyUp={this.handleSubmit}/>
+        const chatter = this.props.username ? (<div><h2>Chatter</h2><input type="text" placeholder="Enter a Value..." className = "chatterInput" onKeyUp={this.handleSubmit}/>
         <br/><br/>
         <div  className = {chatterStatus}>
                 

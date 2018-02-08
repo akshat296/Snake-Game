@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import io from 'socket.io-client';
-import Player from './Player'
+import Player from './Player';
+import './Game.css'
 
 class Game extends Component {
     constructor(props) {
@@ -39,16 +40,17 @@ class Game extends Component {
     render() {
         const games = this.state.games.map((game,index) => {
             return (<div key={index}>
-                        <br/>
                         <Player name={game.name}/>
                         <br/>
                         <b>{game.name}</b>
+                        <br/>
                         </div>)
                         });
 
         return (<div className="center">
-               
+               <h2>Gamer</h2>
                 <input type="text" placeholder="Enter a name..." onKeyUp={this.handleGame} />
+                <div className="size"></div>
                 {games}
            
         </div>);

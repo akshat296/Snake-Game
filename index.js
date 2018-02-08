@@ -16,7 +16,7 @@ app.use(express.static(__dirname +'/public'));
 app.use(webpackDevMiddleware(webpack(webpackConfig)));
 app.use(bodyParser.urlencoded({extended:false}));
 
-var port = 3032;
+var port = 3034;
 var numUsers = 0;
 chatio.on('connection' , socket => {
     var addedUser = false;
