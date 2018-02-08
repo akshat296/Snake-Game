@@ -3,13 +3,16 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUsername } from '../../actions/loginActions';
 import { Link } from 'react-router-dom';
+import { Loading } from '../Pages/Loading'
 import './Sidebar.css';
 class Sidebar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			username: "test",
-			password: "12345"
+			password: "12345",
+			loading:false,
+			type:"Error Login in"
 		};
 		this.username = this.username.bind(this);
 		this.function2 = this.function2.bind(this);
@@ -23,12 +26,14 @@ class Sidebar extends Component {
 		this.setState({ password: event.target.value });
 	}
 	function2() {
-		console.log("akshatq", this.props.user.login[0].name);
+		console.log("akshat username", this.props.user);
+
+		this.setState({loading:false})
 	}
 	checkUser() {
 		this.props.getUsername(this.state.username, this.state.password);
+		this.setState({loading:true})
 		setTimeout(this.function2, 3000);
-		console.log("username func", this.props);
 	}
 
 	render() {
@@ -53,14 +58,16 @@ class Sidebar extends Component {
 				<input className="center-text submit btn btn-primary"
 					type="submit"
 					value="Login" onClick={this.checkUser} /><br />
+					{this.state.loading ? <div><Loading /><br /><br /></div> : ''}
 				<Link to='/register' className="text-success">Not registered yet! Sign Up!</Link>
 			</div>);
 	}
 }
 
 function mapStateToProps(state, ownProps) {
+	//state is store
 	return {
-		user: state.pika
+		user: state.login
 	};
 }
 function mapDispatchToProps(dispatch) {

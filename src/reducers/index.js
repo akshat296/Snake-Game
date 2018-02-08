@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import pika from './loginReducers';
+import login from './loginReducers';
 import register from './registerReducers';
 
-const rootReducer = combineReducers({pika,register});
+const rootReducer = combineReducers({login,register});
 export default rootReducer;

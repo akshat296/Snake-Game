@@ -11,7 +11,7 @@ class Navigation extends Component {
     this.state = {
     };
   }
-  
+
 
   render() {
     return (
@@ -21,11 +21,11 @@ class Navigation extends Component {
           <div className="container-fluid">
             <ul className="nav navbar-nav">
               <li className="navbar-logo">
-              <span className="nav-hamburger" onClick={this.props.toggleMenu}>&#9776;</span>
-             <img src={logo} height="50px" alt="Failed to Load Logo" width="30px" />
+                <span className="nav-hamburger" onClick={this.props.toggleMenu}>&#9776;</span>
+                <img src={logo} height="50px" alt="Failed to Load Logo" width="30px" />
               </li>
               <li className="active">
-              <a href="#">Home</a>
+                <a href="#">Home</a>
               </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">

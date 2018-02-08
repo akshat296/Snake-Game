@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import io from 'socket.io-client';
-
+import './Chat.css'
 class Chat extends Component {
     constructor(props) {
         super(props);
         this.state = {
             messages: [],
-            username:''
+            username:'',
+            chatterShow:false
         };
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleUsername = this.handleUsername.bind(this);  
     }
 
     componentDidMount() {
@@ -38,31 +38,34 @@ class Chat extends Component {
         if (event.keyCode === 13 && body) {
             const message = {
                 body,
-                from: 'Me: '
+                from: 'You: '
             }
-            this.setState({ messages: [message, ...this.state.messages] });
+            this.setState({ messages: [message, ...this.state.messages], chatterShow:true});
+            if(this.props.username){
+            this.socket.emit('add user', this.props.username);
+        }
             this.socket.emit('message', body)
             event.target.value = '';
         }
     }
-    handleUsername(event) {
-        const username = event.target.value;
-        if (event.keyCode === 13 && username) {
-            this.socket.emit('add user', username)
-            event.target.value = '';
-        }}
+
     
 
     render() {
+        
+        var chatterStatus =  this.state.chatterShow ?  "chatter showChatter":"chatter hide";
         const messages = this.state.messages.map((message, index) => {
-            return <div key={index}><li><b>{message.from}</b> {message.body}</li><br /></div>;
-        })
-        return (<div >
-                <input type="text" placeholder="Enter a Name..." onKeyUp={this.handleUsername}/>
-                <br/>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt distinctio adipisci voluptatibus consectetur repudiandae incidunt, officia, debitis, nemo vero aspernatur et corrupti alias sint possimus consequuntur ducimus. Dicta, consectetur quasi.
-                <input type="text" placeholder="Enter a Value..." onKeyUp={this.handleSubmit}/>
+            return <div key={index}><li className="list"><b>{message.from}</b> {message.body}</li><br /></div>;
+        });
+        const chatter = this.props.username ? (<div><h2>Chatter</h2><input type="text" placeholder="Enter a Value..." onKeyUp={this.handleSubmit}/>
+        <br/><br/>
+        <div  className = {chatterStatus}>
+                
                 {messages}
+    </div></div>):<div></div>;
+        return (<div className="center">
+                {chatter}
+                
         </div>);
     }
 }

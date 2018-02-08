@@ -10,7 +10,7 @@ import registerServiceWorker from './registerServiceWorker';
 const Store = configureStore();
 
 Store.subscribe(()=>{
-    console.log("hello",Store.getState());
+    console.log("Store Subscription :",Store.getState());
 });
 
 ReactDOM.render(<BrowserRouter><Provider store = {Store}><App /></Provider></BrowserRouter>, document.getElementById('root'));

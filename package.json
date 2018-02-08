@@ -36,7 +36,9 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
+    "file-loader": "^1.1.6",
     "redux-logger": "^3.0.6",
+    "svg-inline-loader": "^0.8.0",
     "webpack": "^3.10.0"
   }
 }

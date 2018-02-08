@@ -1,14 +1,16 @@
-.header{
-    color:white;
+.header {
+    color: white;
     text-align: center;
 }
-input:focus::-webkit-input-placeholder 
-{
+
+input:focus::-webkit-input-placeholder {
     color: transparent;
 }
+
 a {
-    color:white;
+    color: white;
 }
-a:hover{
-color:lightblue;
+
+a:hover {
+    color: lightblue;
 }

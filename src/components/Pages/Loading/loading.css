@@ -1,6 +1,4 @@
-
-  
-  .loader {
+.loader {
     height: 15px;
     width: 250px;
     position: relative;
@@ -9,8 +7,9 @@
     left: 0;
     right: 0;
     margin: auto;
-  }
-  .loader--dot {
+}
+
+.loader--dot {
     animation-name: loader;
     animation-timing-function: ease-in-out;
     animation-duration: 3s;
@@ -21,74 +20,81 @@
     background-color: black;
     position: absolute;
     border: 2px solid white;
-  }
-  .loader--dot:first-child {
+}
+
+.loader--dot:first-child {
     background-color: #8cc759;
     animation-delay: 0.5s;
-  }
-  .loader--dot:nth-child(2) {
+}
+
+.loader--dot:nth-child(2) {
     background-color: #8c6daf;
     animation-delay: 0.4s;
-  }
-  .loader--dot:nth-child(3) {
+}
+
+.loader--dot:nth-child(3) {
     background-color: #ef5d74;
     animation-delay: 0.3s;
-  }
-  .loader--dot:nth-child(4) {
+}
+
+.loader--dot:nth-child(4) {
     background-color: #f9a74b;
     animation-delay: 0.2s;
-  }
-  .loader--dot:nth-child(5) {
+}
+
+.loader--dot:nth-child(5) {
     background-color: #60beeb;
     animation-delay: 0.1s;
-  }
-  .loader--dot:nth-child(6) {
+}
+
+.loader--dot:nth-child(6) {
     background-color: #fbef5a;
     animation-delay: 0s;
-  }
-  .loader--text {
+}
+
+.loader--text {
     position: absolute;
     top: 200%;
     left: 0;
     right: 0;
     width: 8rem;
     margin: auto;
-  }
-  .loader--text:after {
+}
+
+.loader--text:after {
     content: "Fetching";
     font-weight: bold;
     animation-name: loading-text;
     animation-duration: 3s;
     animation-iteration-count: infinite;
-  }
-  
-  @keyframes loader {
+}
+
+@keyframes loader {
     15% {
-      transform: translateX(0);
+        transform: translateX(0);
     }
     45% {
-      transform: translateX(230px);
+        transform: translateX(230px);
     }
     65% {
-      transform: translateX(230px);
+        transform: translateX(230px);
     }
     95% {
-      transform: translateX(0);
+        transform: translateX(0);
     }
-  }
-  @keyframes loading-text {
+}
+
+@keyframes loading-text {
     0% {
-      content: "Fetching";
+        content: "Fetching";
     }
     25% {
-      content: "Fetching.";
+        content: "Fetching.";
     }
     50% {
-      content: "Fetching..";
+        content: "Fetching..";
     }
     75% {
-      content: "Fetching...";
+        content: "Fetching...";
     }
-    
-  }
-  
+}

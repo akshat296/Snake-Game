@@ -46,7 +46,7 @@ class Game extends Component {
                         </div>)
                         });
 
-        return (<div >
+        return (<div className="center">
                
                 <input type="text" placeholder="Enter a name..." onKeyUp={this.handleGame} />
                 {games}
