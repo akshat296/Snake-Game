@@ -12,7 +12,8 @@ class Chat extends Component {
             username:'',
             color:"#473",
             chatterShow:false,
-            numUser:0
+            numUsers:1,
+            userLeft:''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -22,12 +23,16 @@ class Chat extends Component {
         this.socket.on('message', message => {
             this.setState({
                 messages: [{text :message.text,color:message.color,from:message.from}, ...this.state.messages]
-            })
+            });
+
         });
-        this.socket.on('login', username => {
+       this.socket.on('user left', Users => {
             this.setState({
-                username:username
-            })
+                numUsers:Users.numUser,
+                userLeft:Users.username
+
+            });
+
         })
      
     }
@@ -42,6 +47,7 @@ class Chat extends Component {
                 messages:userData.msgData
             })
         })
+        
     }
     handleSubmit(event) {
         const text = event.target.value;
@@ -75,7 +81,7 @@ class Chat extends Component {
     </div></div>):<div></div>;
         return (<div className="center">
                 {chatter}
-                
+                {/* <p className = "text-success">Number of Users Online - {this.state.numUsers}</p>  */}
         </div>);
     }
 }
