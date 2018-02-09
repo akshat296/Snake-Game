@@ -53,6 +53,7 @@ class Main extends Component {
     }
   }
   render() {
+    const game = this.props.username ?   <Game username = {this.props.username} type = {this.props.type}/> : <div></div>
     return (
       <div className="parent">
         <Navigation id="side-menu" toggleMenu={this.toggleMenu} />
@@ -61,7 +62,8 @@ class Main extends Component {
             <Sidebar />
           </div>
           <div className="col-2" id="col-2">
-            <Game username = {this.props.username} type = {this.props.type}/>
+          {/* Game */}
+           {game}
           </div>
           <div className="col-3 pull-right">
             <Chat username = {this.props.username} type = {this.props.type}/>
@@ -78,9 +80,9 @@ if(JSON.stringify(state.login) !== '{}'){
     username:state.login.login[0].name,
     type:state.login.type
   };}
-  return {
+  return {}; 
 
-  };
+  
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({

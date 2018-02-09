@@ -70,19 +70,39 @@ var numUsers = 0;
         });
     });
 
-
-
+var games = [];   
+var numPlayers = 0;
     
 gameio.on('connection', socket => {
+    var presentUser = false;
 
-    socket.on('game', name => {
-        socket.broadcast.emit('game', {
-            name
-        })
-    }),
-        socket.on('player', (object) => {
-            socket.broadcast.emit('player', object)
-        })
+    socket.on('add user', function (username) {
+        if (presentUser) { return; }
+        presentUser = true;
+        let gameDefault =   {px: 10, py: 10, gs: 20, tc: 20, xv: 0, yv: 0, trail: [], tail: 5, ax: 15, ay: 15, name: username}
+        games.push(gameDefault);
+
+
+        console.log('games from server ==>',games);
+        
+        socket.emit('user joined', {
+            games
+        });
+        // new canvas has to be made now
+    });
+    socket.on('current game', function (currentGame) {
+        //object coming from client
+        games = games.map((game,index)=>{
+            if(game.name === currentGame.name){
+                return currentGame;
+            }
+            return game;
+        });
+        console.log('currentGame==>',currentGame);
+        
+        socket.broadcast.emit('progress game',games);
+        
+});
 });
 console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
 server.listen(port);

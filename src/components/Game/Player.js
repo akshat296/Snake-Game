@@ -10,7 +10,7 @@ class Player extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            px: 10, py: 10, gs: 20, tc: 20, xv: 0, yv: 0, trail: [], tail: 5, ax: 15, ay: 15, name: 'Random'
+            px: 10, py: 10, gs: 20, tc: 20, xv: 0, yv: 0, trail: [], tail: 5, ax: 15, ay: 15, name:"Random"
         };
         //postion x and position y 
         //grid size and tail count
@@ -20,18 +20,15 @@ class Player extends Component {
         this.game = this.game.bind(this);
         this.keyPush = this.keyPush.bind(this);
     }
+   
+    
     componentWillMount() {
-            this.setState({ name: this.props.name });
-      
+        this.socket = io('/game');
+        this.setState({name: this.props.name});
     }
+    
     componentDidMount() {
-        this.socket = io('/game')
-        this.socket.on('player', obj => {
-            this.setState({
-                px: obj.px, py: obj.py, gs: obj.gs, tc: obj.tc, xv: obj.xv, yv: obj.yv, trail: obj.trail
-                ,tail: obj.tail, ax: obj.ax, ay: obj.ay, name: obj.name
-            });
-        });
+           
             var canv = document.getElementById(this.state.name);
             var ctx = canv.getContext('2d');
             document.addEventListener("keydown", this.keyPush);
@@ -39,6 +36,7 @@ class Player extends Component {
             //3
         
     }
+
     timer() {
         return null;
     }
@@ -146,10 +144,15 @@ class Player extends Component {
         }
     }
     render() {
+        this.socket.emit('current game', this.state);
+        //1
+
         return (
+            <div>
             <canvas id={this.state.name} width="400" height="400"
                 style={{ backgroundColor: "silver" }} >
             </canvas>
+            </div>
         );
     }
 }

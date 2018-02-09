@@ -9,47 +9,63 @@ class Game extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            games: []
+            games: [
+                {px: 10, py: 10, gs: 20, tc: 20, xv: 0, yv: 0, trail: [], tail: 5, ax: 15, ay: 15, name: this.props.username}
+            ],
+            numUsers:1
         };
         this.games = <div></div>
         this.handleGame = this.handleGame.bind(this)
     }
 
     componentDidMount() {
-        this.socket = io('/game')
-
-        this.socket.on('game', game => {
+        this.socket.on('progress game', games => {
             this.setState({
-                games: [game, ...this.state.games]
+                games:games
             });
-        })
+            //array of objects comming from server
+        });
+        
 
     }
-    handleGame(event) {
-        const name = this.props.username;
-        if (event.keyCode === 13 && name) {
-            const game = {
-                name
-            }
-            this.setState({ games: [game, ...this.state.games] });
-            this.socket.emit('game', name)//1
-            event.target.value = '';
+    componentWillMount() {
+        this.socket = io('/game');
+        this.socket.on('user joined', games => {
+            console.log('games in client==>',games);
+            
+            this.setState({
+                games:games.games
+            });
+            //array of objects coming from server
+        });
+        if(this.props.username){
+            this.socket.emit('add user', this.props.username);
+            
         }
     }
+    
+    handleGame(event) {
 
-    render() {
+        }
+    
+
+    render() 
+    {
+        console.log('test game state==>',this.state.games);
+        
         const games = this.state.games.map((game, index) => {
-            return (<div key={index}>
-                <Player name={game.name} />
+            return (
+            <div key={index}>
+                <Player {...game}/>
                 <br />
                 <b>{game.name}</b>
                 <br />
-            </div>)
+            </div>);
         });
 
         return (<div className="center">
             <h2>Gamer</h2>
-            <input type="text" placeholder="Enter a name..." onKeyUp={this.handleGame} />
+            <br />
             <div className="size"></div>
             {games}
 
@@ -58,16 +74,11 @@ class Game extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-    if (JSON.stringify(state.login) !== '{}') {
-        return {
-            username: state.login.login[0].name,
-            type: state.login.type
-        };
-    }
+
     return {
 
-    };
-}
+    };}
+
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({
     }, dispatch);
