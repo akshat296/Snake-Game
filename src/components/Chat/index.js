@@ -10,16 +10,18 @@ class Chat extends Component {
         this.state = {
             messages: [],
             username:'',
-            chatterShow:false
+            color:"#473",
+            chatterShow:false,
+            numUser:0
         };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
-        this.socket = io('/chat')
+        
         this.socket.on('message', message => {
             this.setState({
-                messages: [message, ...this.state.messages]
+                messages: [{text :message.text,color:message.color,from:message.from}, ...this.state.messages]
             })
         });
         this.socket.on('login', username => {
@@ -27,28 +29,33 @@ class Chat extends Component {
                 username:username
             })
         })
-        this.socket.on('user joined', username => {
-            this.setState({
-                username
-            })
-        })
+     
     }
     componentWillMount(){
         var abc = this.props.getChatInfo();
-        console.log(abc);
+        this.socket = io('/chat')
+        this.socket.on('user joined', userData => {
+            this.setState({
+                username:userData.username,
+                color:userData.color,
+                numUsers:userData.numUsers,
+                messages:userData.msgData
+            })
+        })
     }
     handleSubmit(event) {
-        const body = event.target.value;
-        if (event.keyCode === 13 && body) {
+        const text = event.target.value;
+        if (event.keyCode === 13 && text) {
             const message = {
-                body,
+                text,
                 from: 'You: '
             }
-            this.setState({ messages: [message, ...this.state.messages], chatterShow:true});
+            this.setState({ messages: [{text :text,color:this.state.color,from:"You: " }, ...this.state.messages], chatterShow:true});
             if(this.props.username){
-            this.socket.emit('add user', this.props.username);
+            this.socket.emit('add user', this.props.username,text);
         }
-            this.socket.emit('message', body)
+       
+            this.socket.emit('message', text)
             event.target.value = '';
         }
     }
@@ -56,10 +63,9 @@ class Chat extends Component {
     
 
     render() {
-        
         var chatterStatus =  this.state.chatterShow ?  "chatter showChatter":"chatter hide";
         const messages = this.state.messages.map((message, index) => {
-            return <div key={index}><li className="list"><b>{message.from}</b> {message.body}</li><br /></div>;
+            return <div key={index}><li className="list" style={{color:message.color}}><b>{message.from}</b> {message.text}</li><br /></div>;
         });
         const chatter = this.props.username ? (<div><h2>Chatter</h2><input type="text" placeholder="Enter a Value..." className = "chatterInput" onKeyUp={this.handleSubmit}/>
         <br/><br/>
