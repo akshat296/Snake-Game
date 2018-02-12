@@ -88,7 +88,7 @@ class Chat extends Component {
 
 function mapStateToProps(state, ownProps) {
     
-    console.log(state);
+    //console.log(state);
     return {
 
     };

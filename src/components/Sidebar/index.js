@@ -9,7 +9,7 @@ class Sidebar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			username: "test",
+			username: "test7",
 			password: "12345",
 			loading:false,
 			type:"Error Login in"
@@ -26,14 +26,14 @@ class Sidebar extends Component {
 		this.setState({ password: event.target.value });
 	}
 	function2() {
-		console.log("akshat username", this.props.user);
+		//console.log("akshat username", this.props.user);
 
 		this.setState({loading:false})
 	}
 	checkUser() {
 		this.props.getUsername(this.state.username, this.state.password);
 		this.setState({loading:true})
-		setTimeout(this.function2, 3000);
+		setTimeout(this.function2, 2000);
 	}
 
 	render() {

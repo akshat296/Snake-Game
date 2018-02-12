@@ -5,7 +5,7 @@ const socketIo = require('socket.io');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackConfig = require('./webpack.config.js');
-
+const _ = require('lodash');
 
 const app = express();
 const server = http.createServer(app);
@@ -72,7 +72,6 @@ var numUsers = 0;
 
 var games = [];   
 var numPlayers = 0;
-    
 gameio.on('connection', socket => {
     var presentUser = false;
 
@@ -81,24 +80,20 @@ gameio.on('connection', socket => {
         presentUser = true;
         let gameDefault =   {px: 10, py: 10, gs: 20, tc: 20, xv: 0, yv: 0, trail: [], tail: 5, ax: 15, ay: 15, name: username}
         games.push(gameDefault);
-
-
-        console.log('games from server ==>',games);
-        
-        socket.emit('user joined', {
+        socket.volatile.emit('user joined', 
             games
-        });
+        );
+        console.log("Server games array==>",games);
         // new canvas has to be made now
     });
     socket.on('current game', function (currentGame) {
         //object coming from client
         games = games.map((game,index)=>{
-            if(game.name === currentGame.name){
+            if(game.name === currentGame.name && !_.isEqual(game,currentGame)){
                 return currentGame;
             }
             return game;
         });
-        console.log('currentGame==>',currentGame);
         
         socket.broadcast.emit('progress game',games);
         

@@ -28,11 +28,14 @@ class Player extends Component {
     }
     
     componentDidMount() {
-           
-            var canv = document.getElementById(this.state.name);
-            var ctx = canv.getContext('2d');
-            document.addEventListener("keydown", this.keyPush);
-            this.timer = setInterval(() => { this.game(ctx, canv) }, 1000 / 15);
+       if(this.props.username){
+        this.setState({name: this.props.username});
+        var canv = document.getElementById(this.state.name);
+        var ctx = canv.getContext('2d');
+        document.addEventListener("keydown", this.keyPush);
+        this.timer = setInterval(() => { this.game(ctx, canv) }, 1000 / 5);
+       }
+            
             //3
         
     }
@@ -144,6 +147,8 @@ class Player extends Component {
         }
     }
     render() {
+       // debugger;
+       
         this.socket.emit('current game', this.state);
         //1
 
@@ -157,9 +162,12 @@ class Player extends Component {
     }
 }
 function mapStateToProps(state, ownProps) {
-    return {
-
-    };
+    if(JSON.stringify(state.login) !== '{}'){
+        return {
+          username:state.login.login[0].name,
+          type:state.login.type
+        };}
+        return {}; 
 }
 function mapDispatchToProps(dispatch) {
     return bindActionCreators({

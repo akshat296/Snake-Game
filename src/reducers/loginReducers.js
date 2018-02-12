@@ -1,5 +1,6 @@
 export default function loginReducers(state ={}, action)
 {
+   // console.log("in reducers login ===>",action);
     switch(action.type)
     {
         case 'SUCCESS': 
