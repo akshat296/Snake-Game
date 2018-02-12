@@ -20,29 +20,29 @@ class Main extends Component {
   toggleMenu() {
 
     if (this.state.sidebar === true) {
-      document.getElementById("col-1").style.animationName = "sidebar";
-      document.getElementById("col-1").style.animationDuration = "0.5s";
+      document.getElementById("col-1").style.animationName           = "sidebar";
+      document.getElementById("col-1").style.animationDuration       = "0.5s";
       document.getElementById("col-1").style.animationIterationCount = 1;
       document.getElementById("col-1").style.animationTimingFunction = "linear";
-      document.getElementById("col-2").style.animationName = "main-content";
-      document.getElementById("col-2").style.animationDuration = "0.5s";
+      document.getElementById("col-2").style.animationName           = "main-content";
+      document.getElementById("col-2").style.animationDuration       = "0.5s";
       document.getElementById("col-2").style.animationIterationCount = 1;
       document.getElementById("col-2").style.animationTimingFunction = "linear";
       setTimeout(() => {
-        document.getElementById("col-1").style.display = "none";
-        document.getElementById("main").style.gridTemplateColumns = "2fr 2fr";
+        document.getElementById("col-1").style.display               = "none";
+        document.getElementById("main").style.gridTemplateColumns    = "2fr 2fr";
         this.setState({ sidebar: false });
       }, 500);
     }
     else {
-      document.getElementById("col-1").style.display = "block";
-      document.getElementById("main").style.gridTemplateColumns = "1fr 2fr 2fr";
-      document.getElementById("col-1").style.animationName = "sidebar-entry";
-      document.getElementById("col-1").style.animationDuration = "0.5s";
+      document.getElementById("col-1").style.display                 = "block";
+      document.getElementById("main").style.gridTemplateColumns      = "1fr 2fr 2fr";
+      document.getElementById("col-1").style.animationName           = "sidebar-entry";
+      document.getElementById("col-1").style.animationDuration       = "0.5s";
       document.getElementById("col-1").style.animationIterationCount = 1;
       document.getElementById("col-1").style.animationTimingFunction = "linear";
-      document.getElementById("col-2").style.animationName = "main-content-entry";
-      document.getElementById("col-2").style.animationDuration = "0.5s";
+      document.getElementById("col-2").style.animationName           = "main-content-entry";
+      document.getElementById("col-2").style.animationDuration       = "0.5s";
       document.getElementById("col-2").style.animationIterationCount = 1;
       document.getElementById("col-2").style.animationTimingFunction = "linear";
       
@@ -51,6 +51,14 @@ class Main extends Component {
       }, 500);
 
     }
+  }
+  componentDidMount(){
+    window.addEventListener("keydown", function(e) {
+      // space and arrow keys
+      if([ 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+          e.preventDefault();
+      }
+  }, false);
   }
   render() {
     const game = this.props.username ?   <Game username = {this.props.username} type = {this.props.type}/> : <div></div>

@@ -79,10 +79,12 @@ gameio.on('connection', socket => {
         if (presentUser) { return; }
         presentUser = true;
         let gameDefault =   {px: 10, py: 10, gs: 20, tc: 20, xv: 0, yv: 0, trail: [], tail: 5, ax: 15, ay: 15, name: username}
+        if(games.length<4){
         games.push(gameDefault);
         socket.volatile.emit('user joined', 
             games
-        );
+        );}
+        
         console.log("Server games array==>",games);
         // new canvas has to be made now
     });

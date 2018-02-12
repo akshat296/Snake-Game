@@ -15,7 +15,7 @@
 .showChatter {
     display: block;
     width: 400px;
-    height: 400px;
+    height: 380px;
     overflow: scroll;
     overflow-x: hidden;
 }

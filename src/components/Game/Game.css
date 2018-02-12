@@ -1,3 +1,10 @@
 .size{
-    height:50px;
+    height:5px;
+}
+.mygame{
+    position: fixed;
+    bottom:0;
+    right:0;
+    margin-right: 180px;
+    z-index:2;
 }

@@ -3,7 +3,7 @@ import '../../App.css';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Navigation from '../Navigation';
-import { registerUser } from '../../actions/registerActions'
+import { registerAction, userExistsCheckAction } from '../../actions/registerActions';
 import { bindActionCreators } from 'redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import './Register.css';
@@ -13,7 +13,7 @@ class Register extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name:"",
+			name: "",
 			username: "",
 			password: "",
 			confirm_password: "",
@@ -24,10 +24,12 @@ class Register extends Component {
 					name: { status: "hide", message: "" },
 					email: { status: "hide", message: "" },
 					password: { status: "hide", message: "" },
-					username: { status: "hide", message: "" }
+					username: { status: "hide", message: "", availability: false }
 				},
 			animation: 0,
-			loading: false
+			loading: false,
+			flagger:false
+
 		};
 		this.name = this.name.bind(this);
 		this.username = this.username.bind(this);
@@ -35,7 +37,10 @@ class Register extends Component {
 		this.confirm_password = this.confirm_password.bind(this);
 		this.email = this.email.bind(this);
 		this.registerUser = this.registerUser.bind(this);
+		//this.validations = this.validations.bind(this);
 		this.waiting = this.waiting.bind(this);
+		this.userCheck = this.userCheck.bind(this);
+
 	}
 	name(event) {
 		this.setState({ name: event.target.value });
@@ -43,6 +48,7 @@ class Register extends Component {
 	username(event) {
 		this.setState({ username: event.target.value });
 	}
+
 	password(event) {
 		this.setState({ password: event.target.value });
 	}
@@ -63,17 +69,54 @@ class Register extends Component {
 			this.setState({ result: "Error while Registering" });
 		}
 	}
+	userCheck(){
+		if(this.props.user.user.length>0)
+		{
+			return  { status: "error show", message: "Username Unavailable", availability: false }
+		}
+		else{
+			return  { status: "noerror show", message: "Username Available", availability: true }
+
+		}
+
+	}
+	
+	
+
 	registerUser(event) {
-		let Error = {  name: { status: "hide", message: "" },email: { status: "hide", message: "" }, password: { status: "hide", message: "" }, username: { status: "hide", message: "" } };
-		this.setState({ "error": Error });
+		var Error = {
+			name: { status: "hide", message: "" },
+			email: { status: "hide", message: "" },
+			password: { status: "hide", message: "" },
+			username: { status: "error hide", message: "", availability: false }
+		};
+
 
 		if (this.state.name === "") {
 			Error.name.status = "show";
 			Error.name.message = "Name should not be blank";
 		}
 		if (this.state.username === "") {
-			Error.username.status = "show";
+			Error.username.status = "error show";
 			Error.username.message = "Username should not be blank";
+		}
+		if (this.state.username) {
+			this.props.userCheck(this.state.username);
+			setTimeout(() => {
+				this.setState({ flagger: true });
+				Error.username  = this.userCheck();
+				this.setState({"error":Error});
+				if (Error.name.status === "hide" && Error.email.status === "hide" && Error.password.status === "hide" && Error.username.availability === true) {
+					this.props.registerUser(this.state.name, this.state.username, this.state.email, this.state.password);
+					this.setState({ loading: true });
+					setTimeout(this.waiting, 2000);
+				}
+				else {
+					this.setState({ "error": Error });
+				}
+				(Error.name.status === 'show' || Error.username.status === 'error show' || Error.email.status === 'show' || Error.password.status === 'show' || Error.username.availability === false) ?
+					this.setState((animation) => ({ animation: 1 })) : this.setState({ animation: 0 });
+			}, 1000);
 		}
 		if (this.state.password !== this.state.confirm_password) {
 			Error.password.status = "show";
@@ -92,16 +135,19 @@ class Register extends Component {
 			Error.email.status = "show";
 			Error.email.message = "Please enter a valid Email ID";
 		}
-		if (Error.name.status === "hide" && Error.email.status === "hide" && Error.password.status === "hide" && Error.username.status === "hide") {
-			console.log("Error :", Error)
-			this.props.registerUser(this.state.name,this.state.username, this.state.email, this.state.password);
-			this.setState({ loading: true });
-			setTimeout(this.waiting, 4000);
-		}
-		else {
-			this.setState({ "error": Error });
-		}
-		(Error.name.status === 'show' || Error.username.status === 'show' || Error.email.status === 'show' || Error.password.status === 'show') ? this.setState((animation) => ({ animation: 1 })) : this.setState({ animation: 0 });
+		if(this.state.flagger === false){
+		if(Error.name.status === 'show' || Error.username.status !== 'noerror show' || Error.email.status === 'show' || Error.password.status === 'show') 
+					{
+						console.log(Error);
+						debugger;
+						this.setState((animation) => ({ animation: 1 }));
+
+					this.setState({ "error": Error }); }
+					else{
+					this.setState({ animation: 0 }) ;
+					
+					}}
+		
 
 	}
 	componentDidUpdate() {
@@ -114,7 +160,7 @@ class Register extends Component {
 		const regTable = this.state.animation ? 'wrapper regError' : 'wrapper';
 		return (
 			<div className="App">
-			<Navigation />
+				<Navigation />
 				<div className="row">
 					<center>
 						<h2 className="center-text registerText">Registration Page</h2>
@@ -122,14 +168,14 @@ class Register extends Component {
 						{this.state.loading ? <div><Loading /><br /><br /></div> : ''}
 						<h4 className="center-text text text-success">{this.state.result}</h4>
 						<div className={regTable}>
-						<input className="center-text textfield"
+							<input className="center-text textfield"
 								type="text"
 								name="name"
 								placeholder="Name"
 								value={this.state.name}
 								onChange={this.name}
 							/>
-						<div className={`error ${this.state.error.name.status}`}>{this.state.error.name.message}</div>
+							<div className={`error ${this.state.error.name.status}`}>{this.state.error.name.message}</div>
 							<input className="center-text textfield"
 								type="text"
 								name="username"
@@ -137,7 +183,7 @@ class Register extends Component {
 								value={this.state.username}
 								onChange={this.username}
 							/>
-							<div className={`error ${this.state.error.username.status}`}>{this.state.error.username.message}</div>
+							<div className={`${this.state.error.username.status}`}>{this.state.error.username.message}</div>
 							<input className="center-text textfield"
 								type="text"
 								name="email"
@@ -179,15 +225,20 @@ class Register extends Component {
 function mapStateToProps(state, ownProps) {
 	return {
 		//courses: state.courses,
-		// statusToast: state.statusToast
-		register: state.register
+		//statusToast: state.statusToast
+		register: state.register,
+		user: state.user
+
+
+
 
 	};
 }
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({
-		//  getUsername: getUsername
-		registerUser: registerUser
+		//getUsername: getUsername
+		registerUser: registerAction,
+		userCheck:userExistsCheckAction
 
 	}, dispatch);
 

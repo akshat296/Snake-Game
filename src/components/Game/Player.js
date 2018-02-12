@@ -33,7 +33,7 @@ class Player extends Component {
         var canv = document.getElementById(this.state.name);
         var ctx = canv.getContext('2d');
         document.addEventListener("keydown", this.keyPush);
-        this.timer = setInterval(() => { this.game(ctx, canv) }, 1000 / 5);
+        this.timer = setInterval(() => { this.game(ctx, canv) }, 1000 / 14);
        }
             
             //3

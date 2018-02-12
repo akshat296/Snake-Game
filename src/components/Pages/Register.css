@@ -53,6 +53,15 @@ div.wrapper {
     display: none;
     border-radius: 5px;
 }
+.noerror {
+    position: relative;
+    bottom: 53%;
+    height: auto;
+    background: #82d94f;
+    width: 100%;
+    display: none;
+    border-radius: 5px;
+}
 
 .nav-hamburger {
     margin-right: 3px;

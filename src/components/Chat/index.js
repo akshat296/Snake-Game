@@ -82,6 +82,7 @@ class Chat extends Component {
         return (<div className="center">
                 {chatter}
                 {/* <p className = "text-success">Number of Users Online - {this.state.numUsers}</p>  */}
+                
         </div>);
     }
 }

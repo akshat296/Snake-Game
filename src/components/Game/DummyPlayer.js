@@ -29,7 +29,7 @@ this.key=this.key.bind(this);    }
             px: nextProps.px,py: nextProps.py,gs: nextProps.gs,tc: nextProps.tc,xv: nextProps.xv,yv: nextProps.yv,trail: nextProps.trail,
             tail: nextProps.tail,ax: nextProps.ax,ay: nextProps.ay,name:nextProps.name
         });
-    //console.log("Dummy State will recive: ==>",nextProps);
+    //console.log("Dummy State will receive: ==>",nextProps);
    
     }
     shouldComponentUpdate(nextProps, nextState) {
@@ -71,7 +71,7 @@ this.key=this.key.bind(this);    }
             else {
                 ctx.fillStyle = "lime"
             }
-           // console.log("Dummy State3: ==>",this.state);
+            //console.log("Dummy State3: ==>",this.state);
             ctx.fillRect(this.state.trail[i].x * this.state.gs, this.state.trail[i].y * this.state.gs, this.state.gs - 2, this.state.gs - 2);
 
 

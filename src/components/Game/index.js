@@ -82,7 +82,7 @@ class Game extends Component {
         </div> 
          );
          let player = this.state.games.filter (game => {
-                if(game.name===this.props.username)
+                if(game.name === this.props.username)
                 {
                     return true;
                 }
@@ -90,7 +90,7 @@ class Game extends Component {
 
          });
          
-         player=
+        player=
             (<div>
             <b>You : {player[0].name}</b>
             <br />
@@ -106,7 +106,9 @@ class Game extends Component {
             <div className="size"></div>
             
             {games}
+            <div className="mygame"> 
             {player}
+            </div>
         </div>);
     }
 }
