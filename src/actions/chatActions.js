@@ -11,3 +11,16 @@ export const getChatInfo = () => {
         }).catch((error)=> {dispatch({type: "ERROR",status: 'error'})});
     }
  };
+//  async CountriesData() {
+//     try{
+//         let {status,data} = await axios.get('http://localhost:8080/demo/get');
+//         return status===200 ? data:{};
+//     }catch(err){
+//         throw err;
+//     }
+//   }
+//   async componentDidMount() {
+//     let data = await this.CountriesData()
+//     this.setState({CountriesData: data});
+
+//   }
